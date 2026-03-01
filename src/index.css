@@ -1,0 +1,139 @@
+@import url('/fonts/index.css');
+
+:root,
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+:root {
+  min-height: 100%;
+  min-width: 320px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+
+  background: var(--base);
+  color: var(--on-base);
+}
+
+:root {
+  --base: hsl(0 100.0000% 99.0196%);
+  --on-base: hsl(222 19.2308% 10.1961%);
+
+  --card: hsl(223.8136 -172.5242% 100.0000%);
+  --on-card: hsl(223.8136 0.0000% 3.9388%);
+
+  --popover: hsl(223.8136 -172.5242% 100.0000%);
+  --on-popover: hsl(223.8136 0.0000% 3.9388%);
+
+  --primary: hsl(43.5874 95.7082% 54.3137%);
+  --on-primary: hsl(43.2000 86.2069% 5.6863%);
+
+  --secondary: hsl(220.5405 90.2439% 91.9608%);
+  --on-secondary: hsl(228 8.7719% 11.1765%);
+
+  --accent: hsl(222 19.2308% 10.1961%);
+  --on-accent: hsl(0 0% 100%);
+
+  --muted: hsl(223.8136 0.0002% 96.0587%);
+  --on-muted: hsl(223.8136 0.0000% 45.1519%);
+
+  --border: hsl(223.8136 0.0001% 89.8161%);
+
+  --sidebar: hsl(0 37.5000% 96.8627%);
+  --on-sidebar: hsl(222 19.2308% 10.1961%);
+
+  --sidebar-highlight: hsl(0 13.7255% 90.0000%);
+  --sidebar-on-highlight: hsl(43.6398 84.5461% 7.6488%);
+}
+
+.dark {
+  --base: hsl(0 5.8824% 10%);
+  --on-base: hsl(223.8136 0.0004% 98.0256%);
+
+  --card: hsl(0 1.4085% 13.9216%);
+  --on-card: hsl(223.8136 0.0004% 98.0256%);
+
+  --popover: hsl(223.8136 0.0000% 14.9382%);
+  --on-popover: hsl(223.8136 0.0004% 98.0256%);
+
+  --primary: hsl(43.8937 99.9805% 51.0721%);
+  --on-primary: hsl(43.2000 86.2069% 5.6863%);
+
+  --secondary: hsl(220.5882 15.1786% 43.9216%);
+  --secondary-foreground: hsl(0 0% 100%);
+
+  --accent: hsl(224.0000 100% 97.0588%);
+  --on-accent: hsl(222 19.2308% 10.1961%);
+
+  --muted: hsl(223.8136 0.0000% 14.9382%);
+  --on-muted: hsl(223.8136 0.0000% 63.0163%);
+
+  --border: hsl(0 0% 25.0980%);
+
+  --sidebar: hsl(0 0% 7.0588%);
+  --on-sidebar: hsl(223.8136 0.0004% 98.0256%);
+
+  --sidebar-highlight: hsl(0 3.5714% 10.9804%);
+  --sidebar-on-highlight: hsl(223.8136 0.0004% 98.0256%);
+}
+
+body {
+  flex-grow: 1;
+}
+
+.light {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+:root svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+svg:not([fill=none]) {
+  fill: currentColor;
+}
+
+svg[stroke-width]:not([stroke=none]),
+path[stroke-width]:not([stroke=none]) {
+  stroke: currentColor;
+}
+
+::selection {
+  background-color: var(--primary);
+  color: var(--primary-text);
+}
+
+.primary::selection,
+.text-primary::selection,
+.bg-primary::selection {
+  background-color: var(--secondary);
+  color: var(--secondary-text);
+}
+
+input {
+  min-width: 0;
+  field-sizing: content;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: currentColor;
+}
+
+.dialog-overlay {
+  --ov-bg: #0003;
+}
+
+.dark .dialog-overlay {
+  --ov-bg: #0008;
+}

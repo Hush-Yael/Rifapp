@@ -1,0 +1,45 @@
+import type { Rule } from "unocss";
+
+const rules: Rule[] = [
+  ["aic", { "align-items": "center" }],
+  ["jcc", { "justify-content": "center" }],
+  ["jb", { "justify-content": "space-between" }],
+  ["tac", { "text-align": "center" }],
+  ["interpolate-keywords", { "interpolate-size": "allow-keywords" }],
+  [
+    "squircle",
+    {
+      "corner-shape": "squircle",
+      "border-radius": "16px",
+    },
+  ],
+  [
+    /^h-(\d+)dvh$/,
+    ([_, d]) => {
+      return [
+        ["height", `${d}vh`],
+        ["height", `${d}dvh`],
+      ];
+    },
+  ],
+  [
+    /^max-h-(\d+)dvh$/,
+    ([_, d]) => {
+      return [
+        ["max-height", `${d}vh`],
+        ["max-height", `${d}dvh`],
+      ];
+    },
+  ],
+  [
+    /^min-h-(\d+)dvh$/,
+    ([_, d]) => {
+      return [
+        ["min-height", `${d}vh`],
+        ["min-height", `${d}dvh`],
+      ];
+    },
+  ],
+] satisfies Rule[];
+
+export default rules;
