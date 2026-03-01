@@ -36,6 +36,7 @@
     "@tanstack/devtools-vite": "^0.3.11",
     "@types/bcrypt": "^6.0.0",
     "@types/node": "^25.3.3",
+    "eruda": "^3.4.3",
     "globals": "^17.3.0",
     "oxlint": "^1.50.0",
     "oxlint-tsgolint": "^0.15.0",
