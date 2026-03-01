@@ -9,6 +9,7 @@ import { HydrationScript } from "solid-js/web";
 import { Suspense } from "solid-js";
 import "virtual:uno.css";
 import indexCss from "~/index.css?url";
+import { ThemeProvider } from "~/context/theme/provider";
 
 if (import.meta.env.DEV && !("sleep" in Promise))
   Object.defineProperty(Promise, "sleep", {
@@ -65,10 +66,12 @@ function RootComponent() {
       </head>
       <body>
         <HeadContent />
-        <Suspense>
-          <Outlet />
-          <TanStackRouterDevtools />
-        </Suspense>
+        <ThemeProvider>
+          <Suspense>
+            <Outlet />
+            <TanStackRouterDevtools />
+          </Suspense>
+        </ThemeProvider>
         <Scripts />
       </body>
     </html>
