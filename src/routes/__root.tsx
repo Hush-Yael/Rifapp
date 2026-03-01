@@ -10,6 +10,18 @@ import { Suspense } from "solid-js";
 import "virtual:uno.css";
 import indexCss from "~/index.css?url";
 
+if (import.meta.env.DEV && !("sleep" in Promise))
+  Object.defineProperty(Promise, "sleep", {
+    value: <T,>(time: number, data?: T) =>
+      new Promise((res) => setTimeout(() => res(data), time)),
+  });
+
+declare global {
+  interface PromiseConstructor {
+    sleep<T>(time: number, data?: T): Promise<T>;
+  }
+}
+
 export const Route = createRootRouteWithContext()({
   head: () => ({
     meta: [
