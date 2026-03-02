@@ -13,7 +13,7 @@ const colors = {
 
 const btn = {
   ["ui-btn"]:
-    "fc gap-x-2 rounded-field transition-[background-color,color,transform,border-color,outline-color] duration-200 ease-in-out cursor-pointer select-none",
+    "fc gap-x-2 transition-[background-color,color,transform,border-color,outline-color] duration-200 ease-in-out cursor-pointer select-none",
 
   ["ui-btn/primary"]:
     "squircle font-600 tracking-wide bg-primary pover:bg-primary/80 border-1 border-[#0002] text-primary-text shadow-[inset_0_2px_0px_#fff3,0_1px_4px_#0002] dark:shadow-[inset_0_2px_0px_#fff4,_0_1px_4px_#0008]",
