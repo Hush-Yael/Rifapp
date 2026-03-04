@@ -35,10 +35,10 @@ body {
 }
 
 :root {
-  --base: hsl(0 100.0000% 99.0196%);
-  --on-base: hsl(222 19.2308% 10.1961%);
+  --base: #f6f2ea;
+  --on-base: hsl(48, 19%, 11%);
 
-  --card: hsl(223.8136 -172.5242% 100.0000%);
+  --card: #fffdf5;
   --on-card: hsl(223.8136 0.0000% 3.9388%);
   --card-shadow:
     0 1px 1px hsl(0deg 0% 0% / 0.05),
@@ -59,20 +59,20 @@ body {
   --accent: hsl(222 19.2308% 10.1961%);
   --on-accent: hsl(0 0% 100%);
 
-  --muted: hsl(223.8136 0.0002% 96.0587%);
-  --on-muted: hsl(223.8136 0.0000% 45.1519%);
+  --muted: hsl(55, 28%, 94%);
+  --on-muted: hsl(50, 3%, 42%);
 
-  --border: hsl(223.8136 0.0001% 89.8161%);
+  --border: hsl(45, 10%, 85%);
 
-  --sidebar: hsl(0 37.5000% 96.8627%);
+  --sidebar: #ebe8db;
   --on-sidebar: hsl(222 19.2308% 10.1961%);
 
-  --sidebar-highlight: hsl(0 13.7255% 90.0000%);
+  --sidebar-highlight: #dcd9d0;
   --sidebar-on-highlight: hsl(43.6398 84.5461% 7.6488%);
 }
 
 .dark {
-  --base: hsl(0 5.8824% 10%);
+  --base: #171716;
   --on-base: hsl(223.8136 0.0004% 98.0256%);
 
   --card: hsl(0 1.4085% 13.9216%);
@@ -98,15 +98,15 @@ body {
   --accent: hsl(224.0000 100% 97.0588%);
   --on-accent: hsl(222 19.2308% 10.1961%);
 
-  --muted: hsl(0, 0%, 20%);
+  --muted: hsl(60, 1%, 18%);
   --on-muted: hsl(0, 0%, 73%);
 
   --border: hsl(0 0% 25.0980%);
 
-  --sidebar: hsl(0 0% 7.0588%);
+  --sidebar: #0f0f0f;
   --on-sidebar: hsl(223.8136 0.0004% 98.0256%);
 
-  --sidebar-highlight: hsl(0 3.5714% 10.9804%);
+  --sidebar-highlight: #171716;
   --sidebar-on-highlight: hsl(223.8136 0.0004% 98.0256%);
 
   --danger: hsl(357, 100%, 60%);
