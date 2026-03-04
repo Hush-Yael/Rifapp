@@ -4,6 +4,7 @@ import type { ConfigThemePreset } from "../uno.config";
 const theme: ThemeExtender<ConfigThemePreset> = (theme) => ({
   ...theme,
   colors: {
+    ...theme.colors,
     base: {
       DEFAULT: "var(--base-background)",
       text: "var(--on-base)",
