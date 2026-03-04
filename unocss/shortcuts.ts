@@ -22,6 +22,10 @@ const btn = {
     "squircle rounded-[16px] font-600 tracking-wide bg-secondary pover:bg-secondary/80 text-secondary-text",
 };
 
+const elems = {
+  ["ui-card"]: "bg-card text-card-text rounded-card shadow-[--card-shadow]",
+};
+
 const toast = {
   ["ui-toast"]: `
     flex gap-x-3 rounded-lg p-2 bg-card shadow-[--card-shadow]
@@ -79,6 +83,7 @@ const shortcuts = {
   ...util,
   ...colors,
   ...btn,
+  ...elems,
   ...toast,
 } satisfies UserShortcuts<ConfigThemePreset>;
 

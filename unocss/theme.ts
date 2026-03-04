@@ -59,6 +59,10 @@ const theme: ThemeExtender<ConfigThemePreset> = (theme) => ({
       text: "var(--sidebar-on-highlight)",
     },
   },
+  radius: {
+    ...theme.radius,
+    card: "var(--card-radius)",
+  },
 });
 
 export default theme;
