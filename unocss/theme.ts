@@ -32,6 +32,23 @@ const theme: ThemeExtender<ConfigThemePreset> = (theme) => ({
       DEFAULT: "var(--muted)",
       text: "var(--on-muted)",
     },
+    danger: {
+      DEFAULT: "var(--danger)",
+      display: "var(--danger-display)",
+      text: "var(--on-danger)",
+    },
+    success: {
+      DEFAULT: "var(--success)",
+      text: "var(--on-success)",
+    },
+    info: {
+      DEFAULT: "var(--info)",
+      text: "var(--on-info)",
+    },
+    warning: {
+      DEFAULT: "var(--warning)",
+      text: "var(--on-warning)",
+    },
     border: "var(--border)",
     sidebar: {
       DEFAULT: "var(--sidebar)",
