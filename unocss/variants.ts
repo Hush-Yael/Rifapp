@@ -31,6 +31,20 @@ const variants = [
       },
     ];
   },
+  (matcher) => {
+    if (!matcher.startsWith("autofilled:")) return matcher;
+
+    return [
+      {
+        matcher: matcher.slice(11),
+        selector: (s) => `${s}:autofill`,
+      },
+      {
+        matcher: matcher.slice(11),
+        selector: (s) => `${s}:-webkit-autofill`,
+      },
+    ];
+  },
 ] satisfies Variant[];
 
 export default variants;
