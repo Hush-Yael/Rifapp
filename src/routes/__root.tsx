@@ -6,10 +6,13 @@ import {
 } from "@tanstack/solid-router";
 import { TanStackRouterDevtools } from "@tanstack/solid-router-devtools";
 import { HydrationScript } from "solid-js/web";
-import { Suspense } from "solid-js";
+import { Show, Suspense } from "solid-js";
 import "virtual:uno.css";
 import indexCss from "~/index.css?url";
+import animCss from "~/anim.css?url";
 import { ThemeProvider } from "~/context/theme/provider";
+import { useHydrated } from "@tanstack/solid-router";
+import LinearLoader from "~/components/widgets/loaders/linear";
 
 if (import.meta.env.DEV && !("sleep" in Promise))
   Object.defineProperty(Promise, "sleep", {
@@ -31,7 +34,10 @@ export const Route = createRootRouteWithContext()({
       { name: "viewport", content: "width=device-width, initial-scale=1.0" },
       { name: "theme-color", content: "hsl(43.5874 95.7082% 54.3137%)" },
     ],
-    links: [{ rel: "stylesheet", href: indexCss }],
+    links: [
+      { rel: "stylesheet", href: indexCss },
+      { rel: "stylesheet", href: animCss },
+    ],
     scripts: import.meta.env.DEV
       ? [
           {
@@ -59,6 +65,8 @@ export const Route = createRootRouteWithContext()({
 });
 
 function RootComponent() {
+  const isHydrated = useHydrated();
+
   return (
     <html lang="es">
       <head>
@@ -66,6 +74,9 @@ function RootComponent() {
       </head>
       <body>
         <HeadContent />
+        <Show when={!isHydrated()}>
+          <LinearLoader />
+        </Show>
         <ThemeProvider>
           <Suspense>
             <Outlet />
