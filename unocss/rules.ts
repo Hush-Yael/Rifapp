@@ -6,13 +6,7 @@ const rules: Rule[] = [
   ["jb", { "justify-content": "space-between" }],
   ["tac", { "text-align": "center" }],
   ["interpolate-keywords", { "interpolate-size": "allow-keywords" }],
-  [
-    "squircle",
-    {
-      "corner-shape": "squircle",
-      "border-radius": "16px",
-    },
-  ],
+  ["squircle", { "corner-shape": "squircle" }],
   [
     /^h-(\d+)dvh$/,
     ([_, d]) => {
