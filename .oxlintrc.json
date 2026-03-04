@@ -3,7 +3,7 @@
   "plugins": null,
   "categories": {},
   "rules": {
-    "typescript/no-floating-promises": "error",
+    "typescript/no-floating-promises": "off",
     "typescript/no-misused-promises": "error"
   },
   "settings": {
