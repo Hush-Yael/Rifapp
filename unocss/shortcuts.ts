@@ -70,13 +70,13 @@ const toast = {
   ["ui-toast-description"]: "",
 
   ["ui-toast-progress-track"]:
-    "w-[6px] rounded text-bottom-to-top bg-[--translucent-2]",
+    "w-[6px] rounded text-bottom-to-top bg-[--shaded-2]",
 
   ["ui-toast-progress-fill"]:
     "w-full h-[var(--kb-toast-progress-fill-width)] rounded-b bg-accent",
 
   ["ui-toast-close-btn"]:
-    "fc mla size-max float-right rounded-full p-0.5 text-muted-text pover:bg-[--translucent-2]",
+    "fc mla size-max float-right rounded-full p-0.5 text-muted-text pover:bg-[--shaded-2]",
 };
 
 const shortcuts = {

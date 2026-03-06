@@ -69,6 +69,9 @@ body {
 
   --sidebar-highlight: #dcd9d0;
   --sidebar-on-highlight: hsl(43.6398 84.5461% 7.6488%);
+
+  --shaded: #0001;
+  --shaded-2: #0002;
 }
 
 .dark {
@@ -113,6 +116,9 @@ body {
   --danger-display: hsl(357, 90%, 67%);
 
   --success: hsl(162, 100%, 33%);
+
+  --shaded: #fff1;
+  --shaded-2: #fff2;
 }
 
 body {
