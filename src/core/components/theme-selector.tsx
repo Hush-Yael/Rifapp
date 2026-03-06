@@ -1,7 +1,7 @@
 import { ClientOnly } from "@tanstack/solid-router";
 import { For } from "solid-js";
-import { useTheme } from "~/context/theme/provider";
-import { type Theme, THEMES } from "~/lib/theme";
+import { useTheme } from "~/core/context/theme/provider";
+import { type Theme, THEMES } from "~/core/lib/theme";
 
 export default function ThemeSelector() {
   const { theme, setTheme } = useTheme();

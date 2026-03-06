@@ -13,7 +13,7 @@ import {
   getStoredTheme,
   type Theme,
   themeValidator,
-} from "~/lib/theme";
+} from "~/core/lib/theme";
 import { ScriptOnce } from "@tanstack/solid-router";
 
 export function ThemeProvider(props: ParentProps) {

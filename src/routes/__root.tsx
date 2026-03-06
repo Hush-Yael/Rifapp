@@ -4,15 +4,15 @@ import {
   Scripts,
   createRootRouteWithContext,
 } from "@tanstack/solid-router";
-import { TanStackRouterDevtools } from "@tanstack/solid-router-devtools";
-import { HydrationScript } from "solid-js/web";
+import { HydrationScript, Portal } from "solid-js/web";
 import { Show, Suspense } from "solid-js";
 import "virtual:uno.css";
-import indexCss from "~/index.css?url";
-import animCss from "~/anim.css?url";
-import { ThemeProvider } from "~/context/theme/provider";
+import indexCss from "~/core/index.css?url";
+import animCss from "~/core/anim.css?url";
+import { ThemeProvider } from "~/core/context/theme/provider";
 import { useHydrated } from "@tanstack/solid-router";
-import LinearLoader from "~/components/widgets/loaders/linear";
+import LinearLoader from "~/shared/components/widgets/loaders/linear";
+import { Toast } from "@kobalte/core/toast";
 
 if (import.meta.env.DEV && !("sleep" in Promise))
   Object.defineProperty(Promise, "sleep", {
@@ -74,14 +74,28 @@ function RootComponent() {
       </head>
       <body>
         <HeadContent />
+
         <Show when={!isHydrated()}>
           <LinearLoader />
         </Show>
+
         <ThemeProvider>
           <Suspense>
             <Outlet />
             <TanStackRouterDevtools />
           </Suspense>
+
+          <Portal>
+            <Toast.Region
+              swipeDirection="down"
+              translations={{
+                notifications: (hotkeyPlaceholder: string) =>
+                  `Notificaciones (${hotkeyPlaceholder})`,
+              }}
+            >
+              <Toast.List class="col gap-2 z-15 fixed bottom-3 left-0 right-0 ma w-90% max-w-400px" />
+            </Toast.Region>
+          </Portal>
         </ThemeProvider>
         <Scripts />
       </body>

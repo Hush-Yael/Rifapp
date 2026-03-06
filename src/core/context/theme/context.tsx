@@ -1,5 +1,5 @@
 import { createContext, type Accessor } from "solid-js";
-import type { Theme } from "~/lib/theme";
+import type { Theme } from "~/core/lib/theme";
 
 type ThemeContextProps = {
   theme: Accessor<Theme>;

@@ -2,8 +2,8 @@ import { createRouter as createTanStackRouter } from "@tanstack/solid-router";
 import { routeTree } from "~/routeTree.gen";
 import { QueryClient } from "@tanstack/solid-query";
 import { setupRouterSsrQueryIntegration } from "@tanstack/solid-router-ssr-query";
-import NotFound from "~/components/NotFound";
-import ErrorComponent from "~/components/Error";
+import NotFound from "~/core/components/NotFound";
+import ErrorComponent from "~/core/components/Error";
 
 export function getRouter() {
   const queryClient = new QueryClient();
