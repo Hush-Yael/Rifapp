@@ -94,7 +94,7 @@ function RootComponent() {
                   `Notificaciones (${hotkeyPlaceholder})`,
               }}
             >
-              <Toast.List class="col gap-2 z-15 fixed bottom-3 left-0 right-0 ma w-90% max-w-400px" />
+              <Toast.List class="col gap-2 z-15 fixed bottom-3 left-0 right-0 w-90% max-w-400px max-[600px]:mx-auto min-[600px]:(mla right-4)" />
             </Toast.Region>
           </Portal>
         </ThemeProvider>
