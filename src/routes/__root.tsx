@@ -29,7 +29,7 @@ declare global {
 export const Route = createRootRouteWithContext()({
   head: () => ({
     meta: [
-      { title: "Rifapp" },
+      { title: import.meta.env.VITE_APP_NAME },
       { name: "charset", content: "UTF-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1.0" },
       { name: "theme-color", content: "hsl(43.5874 95.7082% 54.3137%)" },
