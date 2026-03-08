@@ -13,3 +13,6 @@ __unconfig*
 draft/
 *.db
 *.sql
+*.sqlite
+generated/
+.kanbn_boards/

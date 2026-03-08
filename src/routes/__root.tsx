@@ -11,6 +11,7 @@ import indexCss from "~/core/index.css?url";
 import animCss from "~/core/anim.css?url";
 import { ThemeProvider } from "~/core/context/theme/provider";
 import { useHydrated } from "@tanstack/solid-router";
+import ThemeSelector from "~/core/components/theme-selector";
 import LinearLoader from "~/shared/components/widgets/loaders/linear";
 import { Toast } from "@kobalte/core/toast";
 
@@ -80,9 +81,9 @@ function RootComponent() {
         </Show>
 
         <ThemeProvider>
+          <ThemeSelector />
           <Suspense>
             <Outlet />
-            <TanStackRouterDevtools />
           </Suspense>
 
           <Portal>

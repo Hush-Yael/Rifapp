@@ -22,8 +22,22 @@ const btn = {
     "squircle rounded-[16px] font-600 tracking-wide bg-secondary pover:bg-secondary/80 text-secondary-text",
 };
 
+const input = {
+  ["ui-input/on-card"]: `
+      border border-border bg-muted text-muted-text py-1 px-2 shadow-[inset_0_2px_#fffa] dark:shadow-[inset_0_2px_2px_#0002] outline-accent transition-[colors,opacity]
+      autofilled:text-fill-muted-text autofilled:focus:text-fill-muted-text autofilled:[&_input]:text-fill-muted-text autofilled:caret-base-text autofilled:[&_input]:caret-base-text
+      autofilled:webkit-shadow-[inset_0_2px_#fffa,0_0_0_400px_var(--muted)_inset] dark:autofilled:webkit-shadow-[inset_0_2px_2px_#0002,0_0_0_400px_var(--muted)_inset]
+      [&[aria-invalid=true],&[data-invalid]]:(border-danger outline-danger shadow-none)
+    `,
+
+  ["ui-input-error/on-card"]: "text-sm text-danger-display",
+};
+
 const elems = {
   ["ui-card"]: "bg-card text-card-text rounded-card shadow-[--card-shadow]",
+
+  ["ui-link/primary"]:
+    "underline underline-offset-2 underline-primary pover:underline-2 font-500",
 };
 
 const toast = {
@@ -84,6 +98,7 @@ const shortcuts = {
   ...colors,
   ...btn,
   ...elems,
+  ...input,
   ...toast,
 } satisfies UserShortcuts<ConfigThemePreset>;
 

@@ -12,5 +12,14 @@
     "source.fixAll.oxc": "always"
   },
   "oxc.typeAware": true,
-  "cSpell.words": ["pover", "Rifapp"]
+  "cSpell.words": [
+    "autofilled",
+    "autoincrement",
+    "datasource",
+    "elems",
+    "pover",
+    "redir",
+    "Rifapp",
+    "Twotone"
+  ]
 }

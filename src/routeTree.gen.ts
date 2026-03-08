@@ -9,50 +9,139 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthedRouteImport } from './routes/_authed'
+import { Route as authRedirToDashboardRouteRouteImport } from './routes/(auth)/_redir-to-dashboard/route'
+import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as authRedirToDashboardSignupRouteImport } from './routes/(auth)/_redir-to-dashboard/signup'
+import { Route as authRedirToDashboardLoginRouteImport } from './routes/(auth)/_redir-to-dashboard/login'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const AuthedRoute = AuthedRouteImport.update({
+  id: '/_authed',
   getParentRoute: () => rootRouteImport,
 } as any)
+const authRedirToDashboardRouteRoute =
+  authRedirToDashboardRouteRouteImport.update({
+    id: '/(auth)/_redir-to-dashboard',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
+  id: '/api/auth/$',
+  path: '/api/auth/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const authRedirToDashboardSignupRoute =
+  authRedirToDashboardSignupRouteImport.update({
+    id: '/signup',
+    path: '/signup',
+    getParentRoute: () => authRedirToDashboardRouteRoute,
+  } as any)
+const authRedirToDashboardLoginRoute =
+  authRedirToDashboardLoginRouteImport.update({
+    id: '/login',
+    path: '/login',
+    getParentRoute: () => authRedirToDashboardRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/': typeof AuthedRoute
+  '/login': typeof authRedirToDashboardLoginRoute
+  '/signup': typeof authRedirToDashboardSignupRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/': typeof AuthedRoute
+  '/login': typeof authRedirToDashboardLoginRoute
+  '/signup': typeof authRedirToDashboardSignupRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/_authed': typeof AuthedRoute
+  '/(auth)/_redir-to-dashboard': typeof authRedirToDashboardRouteRouteWithChildren
+  '/(auth)/_redir-to-dashboard/login': typeof authRedirToDashboardLoginRoute
+  '/(auth)/_redir-to-dashboard/signup': typeof authRedirToDashboardSignupRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/login' | '/signup' | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/login' | '/signup' | '/api/auth/$'
+  id:
+    | '__root__'
+    | '/_authed'
+    | '/(auth)/_redir-to-dashboard'
+    | '/(auth)/_redir-to-dashboard/login'
+    | '/(auth)/_redir-to-dashboard/signup'
+    | '/api/auth/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  AuthedRoute: typeof AuthedRoute
+  authRedirToDashboardRouteRoute: typeof authRedirToDashboardRouteRouteWithChildren
+  ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
 declare module '@tanstack/solid-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
+    '/_authed': {
+      id: '/_authed'
+      path: ''
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+      preLoaderRoute: typeof AuthedRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/(auth)/_redir-to-dashboard': {
+      id: '/(auth)/_redir-to-dashboard'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof authRedirToDashboardRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth/$': {
+      id: '/api/auth/$'
+      path: '/api/auth/$'
+      fullPath: '/api/auth/$'
+      preLoaderRoute: typeof ApiAuthSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(auth)/_redir-to-dashboard/signup': {
+      id: '/(auth)/_redir-to-dashboard/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof authRedirToDashboardSignupRouteImport
+      parentRoute: typeof authRedirToDashboardRouteRoute
+    }
+    '/(auth)/_redir-to-dashboard/login': {
+      id: '/(auth)/_redir-to-dashboard/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof authRedirToDashboardLoginRouteImport
+      parentRoute: typeof authRedirToDashboardRouteRoute
     }
   }
 }
 
+interface authRedirToDashboardRouteRouteChildren {
+  authRedirToDashboardLoginRoute: typeof authRedirToDashboardLoginRoute
+  authRedirToDashboardSignupRoute: typeof authRedirToDashboardSignupRoute
+}
+
+const authRedirToDashboardRouteRouteChildren: authRedirToDashboardRouteRouteChildren =
+  {
+    authRedirToDashboardLoginRoute: authRedirToDashboardLoginRoute,
+    authRedirToDashboardSignupRoute: authRedirToDashboardSignupRoute,
+  }
+
+const authRedirToDashboardRouteRouteWithChildren =
+  authRedirToDashboardRouteRoute._addFileChildren(
+    authRedirToDashboardRouteRouteChildren,
+  )
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  AuthedRoute: AuthedRoute,
+  authRedirToDashboardRouteRoute: authRedirToDashboardRouteRouteWithChildren,
+  ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
