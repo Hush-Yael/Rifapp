@@ -96,33 +96,29 @@ export default function RouteComponent(props: { type: "login" | "signup" }) {
     },
 
     onSubmit: async ({ value: data }) => {
-      await new Promise((res, rej) => {
-        toast.promise(
-          submitFn(data).then(({ error }) => {
-            if (error) throw { ...error, message: getErrorMessage(error) };
-          }),
-          {
-            onLoading: "Subiendo datos...",
-            onSuccess: () => {
-              res(true);
+      toast.promise(
+        submitFn(data).then(({ error }) => {
+          if (error) throw { ...error, message: getErrorMessage(error) };
+        }),
+        {
+          onLoading: "Subiendo datos...",
+          onSuccess: () => {
+            queueMicrotask(() => {
+              navigate({
+                to: search().redirect || "/dashboard",
+                replace: import.meta.env.PROD,
+              });
+            });
 
-              return (
-                (isLogin ? "Se inició sesión" : "Cuenta creada") +
-                " correctamente"
-              );
-            },
-            onError: (error) => {
-              rej(error);
-              return error?.message || "Ocurrió un error al subir los datos";
-            },
+            return (
+              (isLogin ? "Se inició sesión" : "Cuenta creada") +
+              " correctamente"
+            );
           },
-        );
-      });
-
-      navigate({
-        to: search().redirect || "/dashboard",
-        replace: import.meta.env.PROD,
-      });
+          onError: (error) =>
+            error?.message || "Ocurrió un error al subir los datos",
+        },
+      );
     },
   }));
 
