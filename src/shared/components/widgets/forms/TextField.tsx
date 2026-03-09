@@ -96,9 +96,9 @@ export const TextFieldErrorMessage = <T,>(props: ErrorMessageProps<T>) => {
       {...props}
       // @ts-expect-error: strip props
       errors={null}
-      fieldAi={null}
+      fieldApi={null}
     >
-      {errors()[0]!.message}
+      {typeof errors()[0] === "string" ? errors()[0] : errors()[0]!.message}
     </Field.ErrorMessage>
   );
 };
