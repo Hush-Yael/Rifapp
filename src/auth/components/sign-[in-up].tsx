@@ -1,4 +1,3 @@
-import { Link } from "@tanstack/solid-router";
 import {
   emailValidator,
   passwordValidator,
@@ -126,99 +125,82 @@ export default function RouteComponent(props: { type: "login" | "signup" }) {
   }));
 
   return (
-    <div class="bg-muted shadow-[--card-shadow] rounded-card">
-      <div class="col gap-y-6 p-6 bg-card rounded-t-card">
-        <hgroup class="text-center mb-4">
-          <h1 class="text-2xl font-bold">
-            {props.type === "login" ? "Iniciar sesión" : "Registro"}
-          </h1>
+    <div class="ui-card col gap-y-6 p-6">
+      <hgroup class="text-center mb-4">
+        <h1 class="text-2xl font-bold">
+          {props.type === "login" ? "Iniciar sesión" : "Registro"}
+        </h1>
 
-          <p class="mt-2 text-(sm balance muted-text)">
-            {props.type === "login"
-              ? "Ingresa los datos de tu cuenta"
-              : "Indica los datos para tu nueva cuenta"}
-          </p>
-        </hgroup>
+        <p class="mt-2 text-(sm balance muted-text)">
+          {props.type === "login"
+            ? "Ingresa los datos de tu cuenta"
+            : "Indica los datos para tu nueva cuenta"}
+        </p>
+      </hgroup>
 
-        <Form.AppForm>
-          <Form.FormComponent class="col gap-y-6" method="post">
+      <Form.AppForm>
+        <Form.FormComponent class="col gap-y-6" method="post">
+          <Form.AppField
+            name="usernameOrEmail"
+            validators={{
+              onChange: isLogin ? usernameOrEmailValidator : emailValidator,
+            }}
+          >
+            {(f) => (
+              <f.TextField
+                required
+                class="col gap-y-1"
+                label={isLogin ? "Correo o nombre de usuario" : "Correo"}
+                inputClass="ui-input/on-card"
+                inputProps={{ inputMode: "email" }}
+                errorClass="ui-input-error/on-card"
+              />
+            )}
+          </Form.AppField>
+
+          {!isLogin && (
             <Form.AppField
-              name="usernameOrEmail"
+              name="newUsername"
               validators={{
-                onChange: isLogin ? usernameOrEmailValidator : emailValidator,
+                onChange: usernameValidator,
               }}
             >
               {(f) => (
                 <f.TextField
                   required
                   class="col gap-y-1"
-                  label={isLogin ? "Correo o nombre de usuario" : "Correo"}
-                  labelClass="input-label"
+                  label="Nombre de usuario"
                   inputClass="ui-input/on-card"
-                  inputProps={{ inputMode: "email" }}
                   errorClass="ui-input-error/on-card"
                 />
               )}
             </Form.AppField>
+          )}
 
-            {!isLogin && (
-              <Form.AppField
-                name="newUsername"
-                validators={{
-                  onChange: usernameValidator,
-                }}
-              >
-                {(f) => (
-                  <f.TextField
-                    required
-                    class="col gap-y-1"
-                    label="Nombre de usuario"
-                    labelClass="input-label"
-                    inputClass="ui-input/on-card"
-                    errorClass="ui-input-error/on-card"
-                  />
-                )}
-              </Form.AppField>
+          <Form.AppField
+            name="password"
+            validators={{
+              onChange: passwordValidator,
+            }}
+          >
+            {(f) => (
+              <f.PasswordField
+                required
+                label="Contraseña"
+                resetPasswordLink={isLogin}
+                class="group/input-root col gap-y-1"
+                inputContainerClass="ui-input/on-card flex items-center justify-between gap-2 py-1! pl-0! pr-1.5! focus-within:outline-2 [.group\/input-root[data-invalid]_&]:(border-danger shadow-none)"
+                inputClass="px-2 w-full outline-0"
+                errorClass="ui-input-error/on-card"
+              />
             )}
+          </Form.AppField>
 
-            <Form.AppField
-              name="password"
-              validators={{
-                onChange: passwordValidator,
-              }}
-            >
-              {(f) => (
-                <f.PasswordField
-                  required
-                  label="Contraseña"
-                  resetPasswordLink={isLogin}
-                  class="group/input-root col gap-y-1"
-                  inputContainerClass="ui-input/on-card flex items-center justify-between gap-2 py-1! pl-0! pr-1.5! focus-within:outline-2 [.group\/input-root[data-invalid]_&]:(border-danger shadow-none)"
-                  inputClass="px-2 w-full outline-0 "
-                  errorClass="ui-input-error/on-card"
-                />
-              )}
-            </Form.AppField>
-
-            <Form.SubmitButton class="ui-btn ui-btn/primary w-full p-1.5 mt-4">
-              {props.type === "login" ? "Ingresar" : "Crear cuenta"}
-            </Form.SubmitButton>
-          </Form.FormComponent>
-        </Form.AppForm>
-      </div>
-
-      <div class="text-center py-3">
-        <span class="text-sm text-muted-text mr-2">
-          ¿{props.type === "login" ? "No" : "Ya"} tienes una cuenta?
-        </span>
-
-        <Link
-          to={props.type === "login" ? "/signup" : "/login"}
-          class="ui-link/primary text-sm"
-        >
-          {props.type === "login" ? "Regístrate" : "Inicia sesión"}
-        </Link>
-      </div>
+          <Form.SubmitButton class="ui-btn ui-btn/primary w-full p-1.5 mt-4">
+            {props.type === "login" ? "Ingresar" : "Crear cuenta"}
+          </Form.SubmitButton>
+        </Form.FormComponent>
+      </Form.AppForm>
     </div>
   );
 }
