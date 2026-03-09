@@ -40,13 +40,18 @@ export const handleThemeChange = createClientOnlyFn((theme: Theme) => {
 });
 
 /** Sets up a mediaQuery with its listener to detect system theme change. Calls `handleThemeChange` whenever it happens */
-export const setupPreferredMedia = createClientOnlyFn(() => {
-  const media = window.matchMedia("(prefers-color-scheme: dark)");
+const preferredMediaHandler = () => handleThemeChange("system");
 
-  const handler = () => handleThemeChange("system");
-  media.addEventListener("change", handler);
+export const setupPreferredMedia = createClientOnlyFn(
+  (media: MediaQueryList) => {
+    media.addEventListener("change", preferredMediaHandler);
+    return () => cleanupPreferredMedia(media);
+  },
+);
 
-  return () => media.removeEventListener("change", handler);
+/** Cleans up mediaQuery listener */
+export const cleanupPreferredMedia = createClientOnlyFn((media) => {
+  media.removeEventListener("change", preferredMediaHandler);
 });
 
 /** Gets client theme from localStorage */

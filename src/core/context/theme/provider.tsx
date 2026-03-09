@@ -13,15 +13,20 @@ import {
   getStoredTheme,
   type Theme,
   themeValidator,
+  cleanupPreferredMedia,
 } from "~/core/lib/theme";
 import { ScriptOnce } from "@tanstack/solid-router";
 
 export function ThemeProvider(props: ParentProps) {
   const [theme, _setTheme] = createSignal<Theme>(getStoredTheme());
+  let media: MediaQueryList | undefined;
 
   createEffect(() => {
-    if (theme() !== "system") return;
-    return setupPreferredMedia();
+    if (media === undefined)
+      media = window.matchMedia("(prefers-color-scheme: dark)");
+
+    if (theme() !== "system") cleanupPreferredMedia(media);
+    else return setupPreferredMedia(media);
   });
 
   /** Parses given theme, stores given value and changes root class */
