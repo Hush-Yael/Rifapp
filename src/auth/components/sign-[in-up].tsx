@@ -12,8 +12,7 @@ import authClient, { getErrorMessage } from "~/auth/lib/client";
 import { useServerFn } from "@tanstack/solid-start";
 import type { AsyncSubmitValidationResult } from "~/shared/types/forms";
 import { useNavigate } from "@tanstack/solid-router";
-import { Route as LoginRoute } from "~/routes/(auth)/_redir-to-dashboard/login";
-import { Route as SignupRoute } from "~/routes/(auth)/_redir-to-dashboard/signup";
+import { useSearch } from "@tanstack/solid-router";
 
 type FormValues = {
   usernameOrEmail: string;
@@ -25,7 +24,11 @@ export default function RouteComponent(props: { type: "login" | "signup" }) {
   const isLogin = props.type === "login";
   const checkUserFn = useServerFn(verifyUserDataFn);
   const navigate = useNavigate();
-  const search = (isLogin ? LoginRoute : SignupRoute).useSearch();
+  const search = useSearch({
+    from: isLogin
+      ? "/(auth)/_redir-to-dashboard/login"
+      : "/(auth)/_redir-to-dashboard/signup",
+  });
 
   const submitFn = (data: FormValues) => {
     if (isLogin) {
