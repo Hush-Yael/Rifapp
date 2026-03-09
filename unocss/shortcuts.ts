@@ -30,6 +30,14 @@ const input = {
       [&[aria-invalid=true],&[data-invalid]]:(border-danger outline-danger shadow-none)
     `,
 
+  ["ui-password-container"]:
+    // oxlint-disable-next-line no-useless-escape
+    "flex aic jb gap-2 focus-within:outline-2",
+
+  ["ui-input/on-password-container"]: "px-2 w-full outline-0",
+
+  ["ui-password-container/on-card"]: "py-1! pl-0! pr-1.5!",
+
   ["ui-input-error/on-card"]: "text-sm text-danger-display",
 };
 

@@ -63,7 +63,10 @@ export default function PasswordField(props: PasswordFieldProps) {
         )}
       </div>
 
-      <div class={props.inputContainerClass}>
+      <div
+        data-invalid={f().state.meta.errors.length > 0 || null}
+        class={props.inputContainerClass}
+      >
         <TextFieldInput
           {...props.inputProps}
           fieldApi={f}

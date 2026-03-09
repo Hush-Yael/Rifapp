@@ -188,9 +188,9 @@ export default function RouteComponent(props: { type: "login" | "signup" }) {
                 required
                 label="Contraseña"
                 resetPasswordLink={isLogin}
-                class="group/input-root col gap-y-1"
-                inputContainerClass="ui-input/on-card flex items-center justify-between gap-2 py-1! pl-0! pr-1.5! focus-within:outline-2 [.group\/input-root[data-invalid]_&]:(border-danger shadow-none)"
-                inputClass="px-2 w-full outline-0"
+                class="col gap-y-1"
+                inputContainerClass="ui-input/on-card ui-password-container ui-password-container/on-card"
+                inputClass="ui-input/on-password-container"
                 errorClass="ui-input-error/on-card"
               />
             )}
