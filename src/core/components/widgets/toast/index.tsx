@@ -64,7 +64,7 @@ function promise<T>(
       | JSX.Element
       | ((error: Error | { message: string }) => JSX.Element);
     /** Specify the duration for each state */
-    durations?: Record<Exclude<ToastPromiseState, "pending">, number>;
+    durations?: Partial<Record<Exclude<ToastPromiseState, "pending">, number>>;
     /** Specify message description for each state */
     descriptions?: Record<ToastPromiseState, JSX.Element>;
   },
