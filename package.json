@@ -45,6 +45,7 @@
     "@pkgverse/prismock": "^2.0.6",
     "@tanstack/devtools-vite": "^0.3.11",
     "@types/node": "^25.3.3",
+    "@types/nodemailer": "^7.0.11",
     "eruda": "^3.4.3",
     "globals": "^17.3.0",
     "oxlint": "^1.50.0",

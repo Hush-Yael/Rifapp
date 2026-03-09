@@ -16,3 +16,4 @@ draft/
 *.sqlite
 generated/
 .kanbn_boards/
+email-logs/

@@ -14,6 +14,10 @@ import { Route as authRedirToDashboardRouteRouteImport } from './routes/(auth)/_
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 import { Route as authRedirToDashboardSignupRouteImport } from './routes/(auth)/_redir-to-dashboard/signup'
 import { Route as authRedirToDashboardLoginRouteImport } from './routes/(auth)/_redir-to-dashboard/login'
+import { Route as authRedirToDashboardInvalidResetTokenRouteImport } from './routes/(auth)/_redir-to-dashboard/invalid-reset-token'
+import { Route as authRedirToDashboardForgotPasswordRouteImport } from './routes/(auth)/_redir-to-dashboard/forgot-password'
+import { Route as authRedirToDashboardExpiredResetTokenRouteImport } from './routes/(auth)/_redir-to-dashboard/expired-reset-token'
+import { Route as authRedirToDashboardResetPasswordTokenRouteImport } from './routes/(auth)/_redir-to-dashboard/reset-password.$token'
 
 const AuthedRoute = AuthedRouteImport.update({
   id: '/_authed',
@@ -41,39 +45,95 @@ const authRedirToDashboardLoginRoute =
     path: '/login',
     getParentRoute: () => authRedirToDashboardRouteRoute,
   } as any)
+const authRedirToDashboardInvalidResetTokenRoute =
+  authRedirToDashboardInvalidResetTokenRouteImport.update({
+    id: '/invalid-reset-token',
+    path: '/invalid-reset-token',
+    getParentRoute: () => authRedirToDashboardRouteRoute,
+  } as any)
+const authRedirToDashboardForgotPasswordRoute =
+  authRedirToDashboardForgotPasswordRouteImport.update({
+    id: '/forgot-password',
+    path: '/forgot-password',
+    getParentRoute: () => authRedirToDashboardRouteRoute,
+  } as any)
+const authRedirToDashboardExpiredResetTokenRoute =
+  authRedirToDashboardExpiredResetTokenRouteImport.update({
+    id: '/expired-reset-token',
+    path: '/expired-reset-token',
+    getParentRoute: () => authRedirToDashboardRouteRoute,
+  } as any)
+const authRedirToDashboardResetPasswordTokenRoute =
+  authRedirToDashboardResetPasswordTokenRouteImport.update({
+    id: '/reset-password/$token',
+    path: '/reset-password/$token',
+    getParentRoute: () => authRedirToDashboardRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AuthedRoute
+  '/expired-reset-token': typeof authRedirToDashboardExpiredResetTokenRoute
+  '/forgot-password': typeof authRedirToDashboardForgotPasswordRoute
+  '/invalid-reset-token': typeof authRedirToDashboardInvalidResetTokenRoute
   '/login': typeof authRedirToDashboardLoginRoute
   '/signup': typeof authRedirToDashboardSignupRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/reset-password/$token': typeof authRedirToDashboardResetPasswordTokenRoute
 }
 export interface FileRoutesByTo {
   '/': typeof AuthedRoute
+  '/expired-reset-token': typeof authRedirToDashboardExpiredResetTokenRoute
+  '/forgot-password': typeof authRedirToDashboardForgotPasswordRoute
+  '/invalid-reset-token': typeof authRedirToDashboardInvalidResetTokenRoute
   '/login': typeof authRedirToDashboardLoginRoute
   '/signup': typeof authRedirToDashboardSignupRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/reset-password/$token': typeof authRedirToDashboardResetPasswordTokenRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_authed': typeof AuthedRoute
   '/(auth)/_redir-to-dashboard': typeof authRedirToDashboardRouteRouteWithChildren
+  '/(auth)/_redir-to-dashboard/expired-reset-token': typeof authRedirToDashboardExpiredResetTokenRoute
+  '/(auth)/_redir-to-dashboard/forgot-password': typeof authRedirToDashboardForgotPasswordRoute
+  '/(auth)/_redir-to-dashboard/invalid-reset-token': typeof authRedirToDashboardInvalidResetTokenRoute
   '/(auth)/_redir-to-dashboard/login': typeof authRedirToDashboardLoginRoute
   '/(auth)/_redir-to-dashboard/signup': typeof authRedirToDashboardSignupRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/(auth)/_redir-to-dashboard/reset-password/$token': typeof authRedirToDashboardResetPasswordTokenRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/signup' | '/api/auth/$'
+  fullPaths:
+    | '/'
+    | '/expired-reset-token'
+    | '/forgot-password'
+    | '/invalid-reset-token'
+    | '/login'
+    | '/signup'
+    | '/api/auth/$'
+    | '/reset-password/$token'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/signup' | '/api/auth/$'
+  to:
+    | '/'
+    | '/expired-reset-token'
+    | '/forgot-password'
+    | '/invalid-reset-token'
+    | '/login'
+    | '/signup'
+    | '/api/auth/$'
+    | '/reset-password/$token'
   id:
     | '__root__'
     | '/_authed'
     | '/(auth)/_redir-to-dashboard'
+    | '/(auth)/_redir-to-dashboard/expired-reset-token'
+    | '/(auth)/_redir-to-dashboard/forgot-password'
+    | '/(auth)/_redir-to-dashboard/invalid-reset-token'
     | '/(auth)/_redir-to-dashboard/login'
     | '/(auth)/_redir-to-dashboard/signup'
     | '/api/auth/$'
+    | '/(auth)/_redir-to-dashboard/reset-password/$token'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,18 +179,58 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof authRedirToDashboardLoginRouteImport
       parentRoute: typeof authRedirToDashboardRouteRoute
     }
+    '/(auth)/_redir-to-dashboard/invalid-reset-token': {
+      id: '/(auth)/_redir-to-dashboard/invalid-reset-token'
+      path: '/invalid-reset-token'
+      fullPath: '/invalid-reset-token'
+      preLoaderRoute: typeof authRedirToDashboardInvalidResetTokenRouteImport
+      parentRoute: typeof authRedirToDashboardRouteRoute
+    }
+    '/(auth)/_redir-to-dashboard/forgot-password': {
+      id: '/(auth)/_redir-to-dashboard/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof authRedirToDashboardForgotPasswordRouteImport
+      parentRoute: typeof authRedirToDashboardRouteRoute
+    }
+    '/(auth)/_redir-to-dashboard/expired-reset-token': {
+      id: '/(auth)/_redir-to-dashboard/expired-reset-token'
+      path: '/expired-reset-token'
+      fullPath: '/expired-reset-token'
+      preLoaderRoute: typeof authRedirToDashboardExpiredResetTokenRouteImport
+      parentRoute: typeof authRedirToDashboardRouteRoute
+    }
+    '/(auth)/_redir-to-dashboard/reset-password/$token': {
+      id: '/(auth)/_redir-to-dashboard/reset-password/$token'
+      path: '/reset-password/$token'
+      fullPath: '/reset-password/$token'
+      preLoaderRoute: typeof authRedirToDashboardResetPasswordTokenRouteImport
+      parentRoute: typeof authRedirToDashboardRouteRoute
+    }
   }
 }
 
 interface authRedirToDashboardRouteRouteChildren {
+  authRedirToDashboardExpiredResetTokenRoute: typeof authRedirToDashboardExpiredResetTokenRoute
+  authRedirToDashboardForgotPasswordRoute: typeof authRedirToDashboardForgotPasswordRoute
+  authRedirToDashboardInvalidResetTokenRoute: typeof authRedirToDashboardInvalidResetTokenRoute
   authRedirToDashboardLoginRoute: typeof authRedirToDashboardLoginRoute
   authRedirToDashboardSignupRoute: typeof authRedirToDashboardSignupRoute
+  authRedirToDashboardResetPasswordTokenRoute: typeof authRedirToDashboardResetPasswordTokenRoute
 }
 
 const authRedirToDashboardRouteRouteChildren: authRedirToDashboardRouteRouteChildren =
   {
+    authRedirToDashboardExpiredResetTokenRoute:
+      authRedirToDashboardExpiredResetTokenRoute,
+    authRedirToDashboardForgotPasswordRoute:
+      authRedirToDashboardForgotPasswordRoute,
+    authRedirToDashboardInvalidResetTokenRoute:
+      authRedirToDashboardInvalidResetTokenRoute,
     authRedirToDashboardLoginRoute: authRedirToDashboardLoginRoute,
     authRedirToDashboardSignupRoute: authRedirToDashboardSignupRoute,
+    authRedirToDashboardResetPasswordTokenRoute:
+      authRedirToDashboardResetPasswordTokenRoute,
   }
 
 const authRedirToDashboardRouteRouteWithChildren =

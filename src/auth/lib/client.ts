@@ -20,16 +20,20 @@ const errorCodes = {
   USER_ALREADY_EXISTS: "El usuario ya está registrado",
   USERNAME_IS_ALREADY_TAKEN: "El nombre de usuario ya está en uso",
   FAILED_TO_CREATE_USER: "Ocurrió un error al crear el usuario",
+  TOKEN_EXPIRED: "El enlace de restablecimiento ya expiró",
+  INVALID_TOKEN: "El enlace de restablecimiento no es válido",
 } satisfies ErrorTypes;
 
 export type AuthError = {
-  code?: string | undefined;
+  code?: keyof ErrorTypes | undefined;
   message?: string | undefined;
   status: number;
   statusText: string;
 };
 
-export const getErrorMessage = (error: AuthError) => {
+export const getErrorMessage = (
+  error: Omit<AuthError, "code"> & { code?: string | undefined },
+) => {
   const { code, message } = error;
 
   if (code && code in errorCodes)
