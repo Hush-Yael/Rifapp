@@ -1,11 +1,11 @@
 import { createFileRoute, redirect } from "@tanstack/solid-router";
-import authClient from "~/auth/lib/client";
+import getSession from "~/auth/hooks/getSession";
 
 export const Route = createFileRoute("/_authed")({
   beforeLoad: async ({ location }) => {
-    const session = await authClient.getSession();
+    const session = await getSession();
 
-    if (session == null || session.data?.user == null)
+    if (!session)
       throw redirect({
         to: "/login",
         // preserve protected route url for redirect when logging in

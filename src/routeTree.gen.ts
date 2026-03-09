@@ -9,7 +9,9 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as AuthedRouteImport } from './routes/_authed'
+import { Route as AuthedRouteRouteImport } from './routes/_authed/route'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthedDashboardRouteImport } from './routes/_authed/dashboard'
 import { Route as authRedirToDashboardRouteRouteImport } from './routes/(auth)/_redir-to-dashboard/route'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 import { Route as authRedirToDashboardSignupRouteImport } from './routes/(auth)/_redir-to-dashboard/signup'
@@ -19,9 +21,19 @@ import { Route as authRedirToDashboardForgotPasswordRouteImport } from './routes
 import { Route as authRedirToDashboardExpiredResetTokenRouteImport } from './routes/(auth)/_redir-to-dashboard/expired-reset-token'
 import { Route as authRedirToDashboardResetPasswordTokenRouteImport } from './routes/(auth)/_redir-to-dashboard/reset-password.$token'
 
-const AuthedRoute = AuthedRouteImport.update({
+const AuthedRouteRoute = AuthedRouteRouteImport.update({
   id: '/_authed',
   getParentRoute: () => rootRouteImport,
+} as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthedDashboardRoute = AuthedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthedRouteRoute,
 } as any)
 const authRedirToDashboardRouteRoute =
   authRedirToDashboardRouteRouteImport.update({
@@ -71,7 +83,8 @@ const authRedirToDashboardResetPasswordTokenRoute =
   } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof AuthedRoute
+  '/': typeof IndexRoute
+  '/dashboard': typeof AuthedDashboardRoute
   '/expired-reset-token': typeof authRedirToDashboardExpiredResetTokenRoute
   '/forgot-password': typeof authRedirToDashboardForgotPasswordRoute
   '/invalid-reset-token': typeof authRedirToDashboardInvalidResetTokenRoute
@@ -81,7 +94,8 @@ export interface FileRoutesByFullPath {
   '/reset-password/$token': typeof authRedirToDashboardResetPasswordTokenRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof AuthedRoute
+  '/': typeof IndexRoute
+  '/dashboard': typeof AuthedDashboardRoute
   '/expired-reset-token': typeof authRedirToDashboardExpiredResetTokenRoute
   '/forgot-password': typeof authRedirToDashboardForgotPasswordRoute
   '/invalid-reset-token': typeof authRedirToDashboardInvalidResetTokenRoute
@@ -92,8 +106,10 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/_authed': typeof AuthedRoute
+  '/': typeof IndexRoute
+  '/_authed': typeof AuthedRouteRouteWithChildren
   '/(auth)/_redir-to-dashboard': typeof authRedirToDashboardRouteRouteWithChildren
+  '/_authed/dashboard': typeof AuthedDashboardRoute
   '/(auth)/_redir-to-dashboard/expired-reset-token': typeof authRedirToDashboardExpiredResetTokenRoute
   '/(auth)/_redir-to-dashboard/forgot-password': typeof authRedirToDashboardForgotPasswordRoute
   '/(auth)/_redir-to-dashboard/invalid-reset-token': typeof authRedirToDashboardInvalidResetTokenRoute
@@ -106,6 +122,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/dashboard'
     | '/expired-reset-token'
     | '/forgot-password'
     | '/invalid-reset-token'
@@ -116,6 +133,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/dashboard'
     | '/expired-reset-token'
     | '/forgot-password'
     | '/invalid-reset-token'
@@ -125,8 +143,10 @@ export interface FileRouteTypes {
     | '/reset-password/$token'
   id:
     | '__root__'
+    | '/'
     | '/_authed'
     | '/(auth)/_redir-to-dashboard'
+    | '/_authed/dashboard'
     | '/(auth)/_redir-to-dashboard/expired-reset-token'
     | '/(auth)/_redir-to-dashboard/forgot-password'
     | '/(auth)/_redir-to-dashboard/invalid-reset-token'
@@ -137,7 +157,8 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  AuthedRoute: typeof AuthedRoute
+  IndexRoute: typeof IndexRoute
+  AuthedRouteRoute: typeof AuthedRouteRouteWithChildren
   authRedirToDashboardRouteRoute: typeof authRedirToDashboardRouteRouteWithChildren
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
@@ -148,8 +169,22 @@ declare module '@tanstack/solid-router' {
       id: '/_authed'
       path: ''
       fullPath: '/'
-      preLoaderRoute: typeof AuthedRouteImport
+      preLoaderRoute: typeof AuthedRouteRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authed/dashboard': {
+      id: '/_authed/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthedDashboardRouteImport
+      parentRoute: typeof AuthedRouteRoute
     }
     '/(auth)/_redir-to-dashboard': {
       id: '/(auth)/_redir-to-dashboard'
@@ -210,6 +245,18 @@ declare module '@tanstack/solid-router' {
   }
 }
 
+interface AuthedRouteRouteChildren {
+  AuthedDashboardRoute: typeof AuthedDashboardRoute
+}
+
+const AuthedRouteRouteChildren: AuthedRouteRouteChildren = {
+  AuthedDashboardRoute: AuthedDashboardRoute,
+}
+
+const AuthedRouteRouteWithChildren = AuthedRouteRoute._addFileChildren(
+  AuthedRouteRouteChildren,
+)
+
 interface authRedirToDashboardRouteRouteChildren {
   authRedirToDashboardExpiredResetTokenRoute: typeof authRedirToDashboardExpiredResetTokenRoute
   authRedirToDashboardForgotPasswordRoute: typeof authRedirToDashboardForgotPasswordRoute
@@ -239,7 +286,8 @@ const authRedirToDashboardRouteRouteWithChildren =
   )
 
 const rootRouteChildren: RootRouteChildren = {
-  AuthedRoute: AuthedRoute,
+  IndexRoute: IndexRoute,
+  AuthedRouteRoute: AuthedRouteRouteWithChildren,
   authRedirToDashboardRouteRoute: authRedirToDashboardRouteRouteWithChildren,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }

@@ -5,6 +5,7 @@ import { username, admin, organization } from "better-auth/plugins";
 import { maxPass, minPass } from "./constants";
 import { testUtils } from "better-auth/plugins";
 import { sendEmail } from "~/core/lib/mails";
+import { tanstackStartCookies } from "better-auth/tanstack-start/solid";
 
 const auth = betterAuth({
   database: prismaAdapter(prisma, { provider: "sqlite" }),
@@ -24,7 +25,13 @@ const auth = betterAuth({
     },
   },
   experimental: { joins: true },
-  plugins: [username(), admin(), organization(), testUtils()],
+  plugins: [
+    username(),
+    admin(),
+    organization(),
+    testUtils(),
+    tanstackStartCookies(),
+  ],
 });
 
 export default auth;
