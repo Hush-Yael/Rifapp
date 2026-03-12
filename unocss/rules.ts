@@ -40,6 +40,7 @@ const rules: Rule[] = [
   ["tac", { "text-align": "center" }],
   ["interpolate-keywords", { "interpolate-size": "allow-keywords" }],
   ["squircle", { "corner-shape": "squircle" }],
+  [/^corner-\[([^\s]*)\]$/, (matches) => arbitrary(matches, "corner-shape")],
   ["text-bottom-to-top", { "writing-mode": "sideways-lr" }],
   [
     /^text-fill-([^\s]+)$/,
