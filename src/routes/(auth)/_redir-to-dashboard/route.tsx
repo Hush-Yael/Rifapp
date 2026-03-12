@@ -13,9 +13,7 @@ export const Route = createFileRoute("/(auth)/_redir-to-dashboard")({
   beforeLoad: async () => {
     if (import.meta.env.PROD) {
       const session = await authClient.getSession();
-
-      if (session == null || session.data?.user == null)
-        throw redirect({ to: "/dashboard" });
+      if (session) throw redirect({ to: "/dashboard", replace: true });
     }
   },
   component,
