@@ -23,7 +23,9 @@ export default function ThemeSelector() {
             current={theme() === item.rawValue}
           />
 
-          <span>{THEMES[item.rawValue] || item.rawValue}</span>
+          <span class="capitalize">
+            {THEMES[item.rawValue] || item.rawValue}
+          </span>
         </Select.Item>
       )}
       placement={sidebarFixed() ? "left-end" : "top-start"}

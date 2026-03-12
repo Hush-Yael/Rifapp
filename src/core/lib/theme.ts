@@ -7,7 +7,7 @@ export type Theme = "light" | "dark" | "system";
 export const THEMES: Record<Theme, string> = {
   light: "claro",
   dark: "oscuro",
-  system: "sistema",
+  system: "automático",
 } as const;
 
 export const themeValidator = z
