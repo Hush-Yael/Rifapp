@@ -65,6 +65,11 @@ const theme: ThemeExtender<ConfigThemePreset> = (theme) => ({
     card: "var(--card-radius)",
     popover: "var(--popover-radius)",
   },
+  breakpoint: {
+    ...theme.breakpoint,
+    sidebar: "768px",
+    sidebar_full: "1000px",
+  },
 });
 
 export default theme;

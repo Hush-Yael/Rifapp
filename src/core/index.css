@@ -73,7 +73,7 @@ body {
   --sidebar: #ebe8db;
   --on-sidebar: hsl(222 19.2308% 10.1961%);
 
-  --sidebar-highlight: #dcd9d0;
+  --sidebar-highlight: hsl(45, 15%, 86%);
   --sidebar-on-highlight: hsl(43.6398 84.5461% 7.6488%);
 
   --shaded: #0001;
@@ -123,7 +123,7 @@ body {
   --sidebar: #0f0f0f;
   --on-sidebar: hsl(223.8136 0.0004% 98.0256%);
 
-  --sidebar-highlight: #171716;
+  --sidebar-highlight: #1f1e1c;
   --sidebar-on-highlight: hsl(223.8136 0.0004% 98.0256%);
 
   --danger: hsl(357, 100%, 60%);

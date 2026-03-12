@@ -75,6 +75,26 @@ const elems = {
   ["ui-menu-item/neutral"]: "pover:bg-muted",
 
   ["ui-menu-item/danger"]: "pover:bg-danger-display/10 text-danger-display",
+
+  ["ui-sidebar-menu-trigger"]: `
+  group flex aic gap-x-2 border border-transparent transition-colors text-sidebar-text
+  pover:bg-sidebar-highlight
+  
+    data-[expanded]:(
+      bg-sidebar-highlight border-[--shaded-2] shadow-[inset_0_2px_#fff3]
+      dark:shadow-[inset_0_1px_1px_#fff2,inset_0_-1px_2px_#0004,0_4px_4px_#0002]
+    )
+
+    max-sidebar_full:(jcc size-9 rounded-full)
+    sidebar_full:(py-1 px-2 rounded-lg dark:data-[expanded]:border-[--shaded])
+    `,
+
+  ["ui-sidebar-menu-trigger-icon-container"]: `
+    relative size-6
+    [&>svg]:(absolute inset-0 size-6 transition-[transform,opacity])
+    group-[[data-expanded]]:[&>svg:first-child]:(scale-80 opacity-0)
+    group-[[data-closed]]:[&>svg:last-child]:(scale-0 opacity-0)
+  `,
 };
 
 const toast = {

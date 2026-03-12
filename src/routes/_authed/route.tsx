@@ -1,5 +1,6 @@
 import { createFileRoute, redirect } from "@tanstack/solid-router";
 import getSession from "~/auth/hooks/getSession";
+import Layout from "~/core/components/layout";
 
 export const Route = createFileRoute("/_authed")({
   beforeLoad: async ({ location }) => {
@@ -15,4 +16,5 @@ export const Route = createFileRoute("/_authed")({
     // Pass session to child routes
     return session;
   },
+  component: Layout,
 });
