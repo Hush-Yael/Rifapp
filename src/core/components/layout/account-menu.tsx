@@ -11,7 +11,7 @@ import sideBarContext from "~/core/context/sidebar/context";
 export default function AccountMenu() {
   const router = useRouter();
   const user = useRouteContext({
-    from: "/_authed/dashboard",
+    from: "/_authed",
     select: (s) => s.user,
   });
   const { sidebarFixed } = useContext(sideBarContext)!;
