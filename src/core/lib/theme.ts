@@ -2,11 +2,17 @@ import z from "zod";
 import { createIsomorphicFn } from "@tanstack/solid-start";
 import { createClientOnlyFn } from "@tanstack/solid-start";
 
-export const THEMES = ["light", "dark", "system"] as const;
+export type Theme = "light" | "dark" | "system";
 
-export type Theme = (typeof THEMES)[number];
+export const THEMES: Record<Theme, string> = {
+  light: "claro",
+  dark: "oscuro",
+  system: "sistema",
+} as const;
 
-export const themeValidator = z.enum(THEMES).catch("system");
+export const themeValidator = z
+  .enum(Object.keys(THEMES) as unknown as [Theme, ...Theme[]])
+  .catch("system");
 
 const themeStorageKey = "theme";
 
