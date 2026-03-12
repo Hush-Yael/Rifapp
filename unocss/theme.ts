@@ -55,7 +55,7 @@ const theme: ThemeExtender<ConfigThemePreset> = (theme) => ({
       DEFAULT: "var(--sidebar)",
       text: "var(--on-sidebar)",
     },
-    sidebarHighlight: {
+    "sidebar-highlight": {
       DEFAULT: "var(--sidebar-highlight)",
       text: "var(--sidebar-on-highlight)",
     },
