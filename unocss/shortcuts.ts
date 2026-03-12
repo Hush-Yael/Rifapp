@@ -47,6 +47,17 @@ const input = {
     [&[data-highlighted]]:not-[[data-selected],[data-checked]]:(bg-muted)
     [&[data-selected],&[data-checked]]:(ui-primary font-500 hover:bg-primary/80 data-[highlighted]:bg-primary/80)
   `,
+
+  ["ui-seg-list"]: "ui-card flex gap-x-1 p-1 px-1.75 rounded-full",
+
+  ["ui-seg-item"]: `
+    fc gap-x-2 rounded-full select-none transition-[background-color,outline-color,color] outline-(1 transparent offset-1)
+    peer-disabled:(opacity-50 cursor-not-allowed)
+    peer-not-checked:text-muted-text
+    peer-checked:(ui-primary shadow-[--primary-shadow])
+    peer-focus-visible:outline-accent
+    peer-not-[:checked,:disabled]:pover:bg-muted
+  `,
 };
 
 const elems = {
