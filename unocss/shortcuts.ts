@@ -16,7 +16,7 @@ const btn = {
     "fc gap-x-2 transition-[background-color,color,opacity,transform,border-color,outline-color] cursor-pointer select-none disabled:cursor-not-allowed",
 
   ["ui-btn/primary"]:
-    "squircle rounded-[16px] font-600 tracking-wide bg-primary pover:bg-primary/80 border-1 border-[#0002] text-primary-text shadow-[inset_0_2px_0px_#fff3,0_1px_4px_#0002] dark:shadow-[inset_0_2px_0px_#fff4,_0_1px_4px_#0008] outline-accent disabled:opacity-50 disabled:active:(animate-head-shake animate-iteration-6) focus-visible:(scale-101 -translate-y-0.5)",
+    "squircle rounded-[16px] font-600 tracking-wide bg-primary pover:bg-primary/80 border-1 border-[#0002] text-primary-text shadow-[--primary-shadow] outline-accent disabled:opacity-50 disabled:active:(animate-head-shake animate-iteration-6) focus-visible:(scale-101 -translate-y-0.5)",
 
   ["ui-btn/secondary"]:
     "squircle rounded-[16px] font-600 tracking-wide bg-secondary pover:bg-secondary/80 text-secondary-text",
