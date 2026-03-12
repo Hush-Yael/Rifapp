@@ -63,6 +63,7 @@ const theme: ThemeExtender<ConfigThemePreset> = (theme) => ({
   radius: {
     ...theme.radius,
     card: "var(--card-radius)",
+    popover: "var(--popover-radius)",
   },
 });
 

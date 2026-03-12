@@ -39,6 +39,14 @@ const input = {
   ["ui-password-container/on-card"]: "py-1! pl-0! pr-1.5!",
 
   ["ui-input-error/on-card"]: "text-sm text-danger-display",
+
+  ["ui-select-list"]: "col gap-y-1 p-1.5",
+
+  ["ui-select-item"]: `
+    p-1 px-3
+    [&[data-highlighted]]:not-[[data-selected],[data-checked]]:(bg-muted)
+    [&[data-selected],&[data-checked]]:(ui-primary font-500 hover:bg-primary/80 data-[highlighted]:bg-primary/80)
+  `,
 };
 
 const elems = {
@@ -46,6 +54,27 @@ const elems = {
 
   ["ui-link/primary"]:
     "underline underline-offset-2 underline-primary pover:underline-2 font-500",
+
+  ["ui-popover"]: `
+    bg-popover rounded-popover shadow-[--popover-shadow] transform-origin-[var(--kb-select-content-transform-origin)] animate-[content-hide-vertical_.2s_ease-in-out_forwards]
+
+    data-[expanded]:animate-[content-show-vertical_.2s_ease-in-out]
+    
+    data-[origin-horizontal]-(
+      animate-[content-hide-horizontal_.2s_ease-in-out_forwards]
+      data-[expanded]:animate-[content-show-horizontal_.2s_ease-in-out]
+    )
+  `,
+
+  ["ui-popover-arrow"]:
+    "flex text-popover [&_svg]:filter-drop-shadow[0px_-3px_6px_#0002] dark:text-[#373636]",
+
+  ["ui-menu-item"]:
+    "flex aic gap-x-2 w-full rounded-[16px] squircle select-none transition-colors hover:outline-none",
+
+  ["ui-menu-item/neutral"]: "pover:bg-muted",
+
+  ["ui-menu-item/danger"]: "pover:bg-danger-display/10 text-danger-display",
 };
 
 const toast = {

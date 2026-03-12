@@ -19,6 +19,7 @@ body {
 
 :root {
   --card-radius: 10px;
+  --popover-radius: 8px;
 
   --danger: hsl(356.5 93.7% 56.5%);
   --on-danger: hsl(360 84.1% 97.2%);
@@ -41,14 +42,19 @@ body {
   --card: #fffdf5;
   --on-card: hsl(223.8136 0.0000% 3.9388%);
   --card-shadow:
-    0 1px 1px hsl(0deg 0% 0% / 0.05),
-    0 2px 2px hsl(0deg 0% 0% / 0.05),
-    0 4px 4px hsl(0deg 0% 0% / 0.05),
-    0 8px 8px hsl(0deg 0% 0% / 0.05),
-    0 16px 16px hsl(0deg 0% 0% / 0.05);
+    0 1px 1px hsl(0 0% 0% / 0.02),
+    0 2px 2px hsl(0 0% 0% / 0.02),
+    0 4px 4px hsl(0 0% 0% / 0.02),
+    0 8px 8px hsl(0 0% 0% / 0.02);
 
-  --popover: hsl(223.8136 -172.5242% 100.0000%);
+  --popover: #fffdf5;
   --on-popover: hsl(223.8136 0.0000% 3.9388%);
+  --popover-shadow:
+    0 1px 1px hsl(0 0% 0% / 0.05),
+    0 2px 2px hsl(0 0% 0% / 0.05),
+    0 4px 4px hsl(0 0% 0% / 0.05),
+    0 8px 8px hsl(0 0% 0% / 0.05),
+    0 16px 16px hsl(0 0% 0% / 0.05);
 
   --primary: hsl(43.5874 95.7082% 54.3137%);
   --on-primary: hsl(43.2000 86.2069% 5.6863%);
@@ -89,8 +95,16 @@ body {
     0 8px 8px hsl(0deg 0% 0% / 0.05),
     0 16px 16px hsl(0deg 0% 0% / 0.05);
 
-  --popover: hsl(223.8136 0.0000% 14.9382%);
+  --popover: hsl(0 1.4085% 13.9216%);
   --on-popover: hsl(223.8136 0.0004% 98.0256%);
+  --popover-shadow:
+    0 1px 0 #ffffff0c inset,
+    0 2px 0 #ffffff0a inset,
+    0 1px 1px hsl(0 0% 0% / 0.2),
+    0 2px 2px hsl(0 0% 0% / 0.2),
+    0 4px 4px hsl(0 0% 0% / 0.2),
+    0 8px 8px hsl(0 0% 0% / 0.2),
+    0 16px 16px hsl(0 0% 0% / 0.2);
 
   --primary: hsl(43.8937 99.9805% 51.0721%);
   --on-primary: hsl(43.2000 86.2069% 5.6863%);
