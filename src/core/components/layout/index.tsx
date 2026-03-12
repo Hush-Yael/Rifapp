@@ -2,7 +2,7 @@ import { Outlet } from "@tanstack/solid-router";
 import Logo, { LogoShape } from "../logo";
 import { useContext } from "solid-js";
 import ThemeSelector from "./theme-selector";
-import ProfileMenu from "./profile-menu";
+import AccountMenu from "./account-menu";
 import Notifications from "./notifications";
 import Navbar from "./navbar";
 import SidebarProvider from "~/core/context/sidebar/provider";
@@ -66,7 +66,7 @@ function Sidebar() {
 
         <Notifications />
 
-        <ProfileMenu />
+        <AccountMenu />
 
         <button
           class={`group col gap-y-1.5 aic jcc h-6 w-12 sidebar:hidden [&>span]:(h-[2px] w-1/2 bg-current transition-[transform,opacity] duration-250) `}

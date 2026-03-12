@@ -8,7 +8,7 @@ import { DropdownMenu } from "@kobalte/core/dropdown-menu";
 import { FaRegularUserCircle, FaSolidCircleUser } from "solid-icons/fa";
 import sideBarContext from "~/core/context/sidebar/context";
 
-export default function ProfileMenu() {
+export default function AccountMenu() {
   const router = useRouter();
   const user = useRouteContext({
     from: "/_authed/dashboard",
