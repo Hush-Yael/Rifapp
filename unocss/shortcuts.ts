@@ -88,8 +88,8 @@ const elems = {
   ["ui-menu-item/danger"]: "pover:bg-danger-display/10 text-danger-display",
 
   ["ui-sidebar-menu-trigger"]: `
-  group flex aic gap-x-2 border border-transparent transition-colors text-sidebar-text
-  pover:bg-sidebar-highlight
+    flex aic gap-x-2 border border-transparent transition-colors text-sidebar-text
+    pover:bg-sidebar-highlight
   
     data-[expanded]:(
       bg-sidebar-highlight border-[--shaded-2] shadow-[inset_0_2px_#fff3]
