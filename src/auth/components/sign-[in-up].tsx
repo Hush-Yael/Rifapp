@@ -1,8 +1,8 @@
 import {
   emailValidator,
+  nameValidator,
   passwordValidator,
   usernameOrEmailValidator,
-  usernameValidator,
   verifyUserDataFn,
 } from "~/auth/lib/validators";
 import { useAppForm } from "~/shared/hooks/forms";
@@ -15,7 +15,7 @@ import { useSearch } from "@tanstack/solid-router";
 
 type FormValues = {
   usernameOrEmail: string;
-  newUsername: string;
+  name: string;
   password: string;
 };
 
@@ -45,9 +45,8 @@ export default function RouteComponent(props: { type: "login" | "signup" }) {
         });
     } else
       return authClient.signUp.email({
-        name: "",
+        name: data.name,
         email: data.usernameOrEmail,
-        username: data.newUsername,
         password: data.password,
       });
   };
@@ -55,7 +54,7 @@ export default function RouteComponent(props: { type: "login" | "signup" }) {
   const Form = useAppForm(() => ({
     defaultValues: {
       usernameOrEmail: "",
-      newUsername: "",
+      name: "",
       password: "",
     } satisfies FormValues,
 
@@ -63,24 +62,14 @@ export default function RouteComponent(props: { type: "login" | "signup" }) {
       onSubmitAsync: async ({
         value: data,
       }): AsyncSubmitValidationResult<FormValues> => {
-        const { error, validUsernameOrMail, validNewUsername, validPass } =
-          await checkUserFn({
-            data: { ...data, isLogin },
-          });
+        const { error, validUsernameOrMail, validPass } = await checkUserFn({
+          data: { ...data, isLogin },
+        });
 
         if (validUsernameOrMail === false)
           return {
             fields: {
               usernameOrEmail: {
-                message: error!,
-              },
-            },
-          };
-
-        if (validNewUsername === false)
-          return {
-            fields: {
-              newUsername: {
                 message: error!,
               },
             },
@@ -160,16 +149,16 @@ export default function RouteComponent(props: { type: "login" | "signup" }) {
 
           {!isLogin && (
             <Form.AppField
-              name="newUsername"
+              name="name"
               validators={{
-                onChange: usernameValidator,
+                onChange: nameValidator,
               }}
             >
               {(f) => (
                 <f.TextField
                   required
                   class="col gap-y-1"
-                  label="Nombre de usuario"
+                  label="Nombre completo"
                   inputClass="ui-input/on-card"
                   errorClass="ui-input-error/on-card"
                 />

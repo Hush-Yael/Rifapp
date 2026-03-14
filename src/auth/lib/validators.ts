@@ -36,25 +36,28 @@ export const passwordValidator = z
   .min(minPass, CustomZodErrorMessages.minLength(minPass))
   .max(maxPass, CustomZodErrorMessages.maxLength(maxPass));
 
+export const nameValidator = z
+  .string({ errorMap: CustomZodErrorMessages.invalidValue })
+  .trim()
+  .nonempty({ message: CustomZodErrorMessages.requiredValue })
+  .min(2, CustomZodErrorMessages.minLength(2))
+  .max(100, CustomZodErrorMessages.maxLength(100))
+  .regex(/^[a-zA-Z\u00C0-\u017F\s]+$/, "Solo se aceptan letras y espacios");
+
 /**
  * Verifies user data: if is signup checks if email is not taken, else if is login checks if credentials are correct
  * @returns user data if login and got no errors, error if any, and 'validUsernameOrMail' and 'validPass' variables to determine which fields are valid or not
  **/
 export const verifyUserDataFn = createServerFn({ method: "POST" })
   .inputValidator(
-    (data: {
-      usernameOrEmail: string;
-      newUsername: string;
-      password: string;
-      isLogin: boolean;
-    }) => data,
+    (data: { usernameOrEmail: string; password: string; isLogin: boolean }) =>
+      data,
   )
   .handler(async ({ data }) => {
-    const { usernameOrEmail, newUsername, password, isLogin } = data;
+    const { usernameOrEmail, password, isLogin } = data;
 
     try {
       let error: string | null = null,
-        validNewUsername: boolean | null = null,
         validUsernameOrMail: boolean | null = null,
         validPass: boolean | null = null;
 
@@ -97,9 +100,6 @@ export const verifyUserDataFn = createServerFn({ method: "POST" })
         if (await getUserByEmail(usernameOrEmail!)) {
           error = "El correo ya está registrado";
           validUsernameOrMail = false;
-        } else if (await getUserByUsername(newUsername)) {
-          error = "El nombre de usuario ya está en uso";
-          validNewUsername = false;
         }
 
         // Valid: Signup with valid user (non-existent)
@@ -109,7 +109,6 @@ export const verifyUserDataFn = createServerFn({ method: "POST" })
       return {
         error,
         validUsernameOrMail,
-        validNewUsername,
         validPass,
       };
     } catch (error) {
