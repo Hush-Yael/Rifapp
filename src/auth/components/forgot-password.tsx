@@ -16,11 +16,9 @@ export default function ForgotPassword() {
       clearInterval(countdownInterval);
 
       toast.promise(
-        authClient
-          .requestPasswordReset({ email: data.email })
-          .then(({ error }) => {
-            if (error) throw { ...error, message: getErrorMessage(error) };
-          }),
+        useAuthFnPromise(
+          authClient.requestPasswordReset({ email: data.email }),
+        ),
         {
           onLoading: "Enviando correo de recuperación...",
           onSuccess: () => {

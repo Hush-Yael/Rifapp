@@ -31,11 +31,9 @@ export default function ResetPassword() {
       const { token } = params();
 
       toast.promise(
-        authClient
-          .resetPassword({ newPassword: data.password, token })
-          .then(({ error }) => {
-            if (error) throw { ...error, message: getErrorMessage(error) };
-          }),
+        useAuthFnPromise(
+          authClient.resetPassword({ newPassword: data.password, token }),
+        ),
         {
           durations: { rejected: 7000 },
           onLoading: "Restableciendo contraseña...",
