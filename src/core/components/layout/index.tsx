@@ -12,7 +12,7 @@ export default function Layout() {
   return (
     <SidebarProvider>
       <div
-        class="col flex-1 bg-sidebar sidebar:p-3"
+        class="col flex-1 bg-sidebar sidebar:p-2"
         style={{
           "--nav-w": "40px",
           "--nav-full-w": "200px",
