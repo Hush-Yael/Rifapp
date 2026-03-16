@@ -80,7 +80,7 @@ export function NavbarLink(props: NavbarLinkProps) {
               bg-sidebar-highlight border-[--shaded] shadow-[inset_0_2px_#fff3]
               dark:(shadow-[inset_0_1px_1px_#fff2,inset_0_-1px_2px_#0004,0_4px_4px_#0002])
             )
-            aria-[current=page]:(ui-primary pover:bg-primary/80 shadow-[--primary-shadow])
+            aria-[current=page]:(ui-primary pover:bg-primary/80 shadow-[--filled-shadow])
             sidebar:max-sidebar_full:(jcc p-2)
           `}
         >
