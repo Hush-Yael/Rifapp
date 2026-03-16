@@ -112,7 +112,6 @@ body {
 
   --primary: hsl(43.8937 99.9805% 51.0721%);
   --on-primary: hsl(43.2000 86.2069% 5.6863%);
-  --primary-shadow: inset 0 2px 0px #fff4, 0 1px 4px #0008;
 
   --secondary: hsl(220.5882 15.1786% 43.9216%);
   --secondary-foreground: hsl(0 0% 100%);

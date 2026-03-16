@@ -1,4 +1,5 @@
 import { type AuthError, getErrorMessage } from "~/auth/lib/client";
+import fs from "fs/promises";
 import type { useRouter } from "@tanstack/solid-router";
 
 type AuthFnResolvedError = { error: AuthError };
@@ -17,6 +18,9 @@ export const useAuthFnPromise = <T>(fnPromise: Promise<T>) =>
       })
       .catch(rej),
   );
+
+export const ensureDir = (dir: string) =>
+  fs.access(dir).catch(() => fs.mkdir(dir, { recursive: true }));
 
 /** Used to invalidate router when toast is shown */
 export const refreshAfterToast = (

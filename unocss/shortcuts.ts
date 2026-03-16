@@ -23,14 +23,37 @@ const btn = {
 
   ["ui-btn/danger"]:
     "bg-danger text-danger-text rounded-[16px] squircle border border-[--shaded] font-600 shadow-[--filled-shadow] pover:bg-danger/80 disabled:active:(animate-head-shake animate-iteration-6)",
+
+  ["ui-btn/card"]:
+    "bg-card border border-[--shaded-2] rounded-[16px] squircle text-card-text font-600 duration-100 pover:bg-card/50 dark:pover:bg-muted shadow-[0_1px_0_rgba(27,31,35,0.04)] dark:shadow-[0_2px_2px_#0004,0_4px_4px_#0002] disabled:active:(animate-head-shake animate-iteration-6)",
 };
 
 const input = {
+  ["ui-input"]:
+    "rounded py-1 px-2 outline-accent transition-[colors,opacity,shadow] [&[aria-invalid=true],&[data-invalid]]:(border-danger! outline-danger)",
+
+  ["ui-input/card"]: `
+    border border-[--shaded-2] bg-card text-muted-text not-focus-within:shadow-[inset_0_-2px_rgba(0,0,0,0.05)]
+    dark:(border-[--shaded] not-focus-within:shadow-[inset_0_-2px_var(--shaded),0_2px_3px_#0004,0_4px_6px_#0001])
+    autofilled:(
+      text-fill-muted-text caret-base-text
+      focus:text-fill-muted-text
+      [&_input]:(text-fill-muted-text caret-base-text)
+      webkit-shadow-[inset_0_-2px_rgba(0,0,0,0.05),inset_0_0_0_400px_var(--card)]!
+      dark:webkit-shadow-[inset_0_-2px_var(--shaded),inset_0_0_0_400px_var(--card),0_2px_3px_#0004,0_4px_6px_#0001]!
+    )
+  `,
+
   ["ui-input/on-card"]: `
-      border border-border bg-muted text-muted-text py-1 px-2 shadow-[inset_0_2px_#fffa] dark:shadow-[inset_0_2px_2px_#0002] outline-accent transition-[colors,opacity]
-      autofilled:text-fill-muted-text autofilled:focus:text-fill-muted-text autofilled:[&_input]:text-fill-muted-text autofilled:caret-base-text autofilled:[&_input]:caret-base-text
-      autofilled:webkit-shadow-[inset_0_2px_#fffa,0_0_0_400px_var(--muted)_inset] dark:autofilled:webkit-shadow-[inset_0_2px_2px_#0002,0_0_0_400px_var(--muted)_inset]
-      [&[aria-invalid=true],&[data-invalid]]:(border-danger outline-danger shadow-none)
+      border border-border bg-muted text-muted-text shadow-[inset_0_2px_#fffa] dark:shadow-[inset_0_2px_2px_#0002]
+      autofilled:(
+        text-fill-muted-text caret-base-text 
+        focus:text-fill-muted-text 
+        [&_input]:(text-fill-muted-text caret-base-text)
+        webkit-shadow-[inset_0_2px_#fffa,inset_0_0_0_400px_var(--muted)]
+        dark:webkit-shadow-[inset_0_2px_2px_#0002,inset_0_0_0_400px_var(--muted)]
+      )
+      [&[aria-invalid=true],&[data-invalid]]:shadow-none
     `,
 
   ["ui-password-container"]:
@@ -42,6 +65,14 @@ const input = {
   ["ui-password-container/on-card"]: "py-1! pl-0! pr-1.5!",
 
   ["ui-input-error/on-card"]: "text-sm text-danger-display",
+
+  ["ui-ripple"]: `
+    relative
+    before:(
+      absolute -inset-1.5 content-empty pointer-events-none block rounded-lg bg-[--shaded]/50 opacity-0 transition-opacity
+      media-mouse:(group-hover/label:opacity-100 peer-hover/label:opacity-100) media-touch:(group-active/label:opacity-100 peer-active/label:opacity-100)
+    )
+  `,
 
   ["ui-select-list"]: "col gap-y-1 p-1.5",
 
@@ -57,7 +88,7 @@ const input = {
     fc gap-x-2 rounded-full select-none transition-[background-color,outline-color,color] outline-(1 transparent offset-1)
     peer-disabled:(opacity-50 cursor-not-allowed)
     peer-not-checked:text-muted-text
-    peer-checked:(ui-primary shadow-[--primary-shadow])
+    peer-checked:(ui-primary shadow-[--filled-shadow])
     peer-focus-visible:outline-accent
     peer-not-[:checked,:disabled]:pover:bg-muted
   `,

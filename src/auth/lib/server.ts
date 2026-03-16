@@ -24,6 +24,24 @@ const auth = betterAuth({
       });
     },
   },
+  user: {
+    changeEmail: {
+      updateEmailWithoutVerification: true,
+      enabled: true,
+    },
+    additionalFields: {
+      thumbnail: {
+        type: "string",
+        required: false,
+      },
+    },
+  },
+  session: {
+    cookieCache: {
+      enabled: true,
+      maxAge: 120, // 2 minutes
+    },
+  },
   experimental: { joins: true },
   plugins: [
     username(),

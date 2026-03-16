@@ -37,6 +37,8 @@ model User {
   username        String?
   displayUsername String?
 
+  thumbnail String?
+
   @@map("user")
   @@unique([username])
 }

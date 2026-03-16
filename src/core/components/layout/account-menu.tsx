@@ -21,7 +21,7 @@ export default function AccountMenu() {
     <DropdownMenu placement={sidebarFixed() ? "left-end" : undefined}>
       <DropdownMenu.Trigger class="ui-sidebar-menu-trigger group">
         <Show
-          when={user().image}
+          when={user().thumbnail || user().image}
           fallback={
             <span class="ui-sidebar-menu-trigger-icon-container">
               <FaRegularUserCircle />
@@ -30,7 +30,7 @@ export default function AccountMenu() {
           }
         >
           <img
-            src={user().image!}
+            src={user().thumbnail || user().image!}
             class="size-7 rounded-full object-cover sidebar_full:-ml-0.5"
             alt="user"
           />
@@ -68,7 +68,7 @@ export default function AccountMenu() {
           <DropdownMenu.Item
             class="ui-menu-item ui-menu-item/neutral p-1 px-2"
             // oxlint-disable-next-line typescript/no-misused-promises
-            onClick={() => router.navigate({ to: "/settings" })}
+            onClick={() => router.navigate({ to: "/account" })}
           >
             <AiOutlineSetting class="size-4" />
             Configuraciones

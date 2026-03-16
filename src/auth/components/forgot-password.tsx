@@ -1,8 +1,9 @@
 import { createSignal } from "solid-js";
-import authClient, { getErrorMessage } from "../lib/client";
+import authClient from "../lib/client";
 import toast from "~/core/components/widgets/toast";
 import { useAppForm } from "~/shared/hooks/forms";
 import { emailValidator } from "../lib/validators";
+import { useAuthFnPromise } from "~/core/lib/util";
 
 export default function ForgotPassword() {
   const [sendCountdown, setSendCountdown] = createSignal(0);

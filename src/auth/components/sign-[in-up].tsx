@@ -7,11 +7,12 @@ import {
 } from "~/auth/lib/validators";
 import { useAppForm } from "~/shared/hooks/forms";
 import toast from "~/core/components/widgets/toast";
-import authClient, { getErrorMessage } from "~/auth/lib/client";
+import authClient from "~/auth/lib/client";
 import { useServerFn } from "@tanstack/solid-start";
 import type { AsyncSubmitValidationResult } from "~/shared/types/forms";
 import { useNavigate } from "@tanstack/solid-router";
 import { useSearch } from "@tanstack/solid-router";
+import { useAuthFnPromise } from "~/core/lib/util";
 
 type FormValues = {
   usernameOrEmail: string;
@@ -134,7 +135,7 @@ export default function RouteComponent(props: { type: "login" | "signup" }) {
                 required
                 class="col gap-y-1"
                 label={isLogin ? "Correo o nombre de usuario" : "Correo"}
-                inputClass="ui-input/on-card"
+                inputClass="ui-input ui-input/on-card"
                 inputProps={{ inputMode: "email" }}
                 errorClass="ui-input-error/on-card"
               />
@@ -153,7 +154,7 @@ export default function RouteComponent(props: { type: "login" | "signup" }) {
                   required
                   class="col gap-y-1"
                   label="Nombre completo"
-                  inputClass="ui-input/on-card"
+                  inputClass="ui-input ui-input/on-card"
                   errorClass="ui-input-error/on-card"
                 />
               )}
@@ -172,7 +173,7 @@ export default function RouteComponent(props: { type: "login" | "signup" }) {
                 label="Contraseña"
                 resetPasswordLink={isLogin}
                 class="col gap-y-1"
-                inputContainerClass="ui-input/on-card ui-password-container ui-password-container/on-card"
+                inputContainerClass="ui-input ui-input/on-card ui-password-container ui-password-container/on-card"
                 inputClass="ui-input/on-password-container"
                 errorClass="ui-input-error/on-card"
               />

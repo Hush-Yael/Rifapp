@@ -3,10 +3,23 @@ import {
   usernameClient,
   adminClient,
   organizationClient,
+  inferAdditionalFields,
 } from "better-auth/client/plugins";
 
 const authClient = createAuthClient({
-  plugins: [usernameClient(), adminClient(), organizationClient()],
+  plugins: [
+    usernameClient(),
+    adminClient(),
+    organizationClient(),
+    inferAdditionalFields({
+      user: {
+        thumbnail: {
+          type: "string",
+          required: false,
+        },
+      },
+    }),
+  ],
 });
 
 export default authClient;
@@ -22,6 +35,7 @@ const errorCodes = {
   FAILED_TO_CREATE_USER: "Ocurrió un error al crear el usuario",
   TOKEN_EXPIRED: "El enlace de restablecimiento ya expiró",
   INVALID_TOKEN: "El enlace de restablecimiento no es válido",
+  VALIDATION_ERROR: "Error de validación",
 } satisfies ErrorTypes;
 
 export type AuthError = {

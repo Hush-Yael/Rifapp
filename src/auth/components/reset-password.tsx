@@ -1,9 +1,10 @@
-import authClient, { getErrorMessage, type AuthError } from "../lib/client";
+import authClient, { type AuthError } from "../lib/client";
 import toast from "~/core/components/widgets/toast";
 import { useAppForm } from "~/shared/hooks/forms";
 import { useNavigate, useParams } from "@tanstack/solid-router";
 import { z } from "zod";
 import { passwordValidator } from "../lib/validators";
+import { useAuthFnPromise } from "~/core/lib/util";
 
 export default function ResetPassword() {
   const navigate = useNavigate();

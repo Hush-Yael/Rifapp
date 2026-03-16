@@ -10,7 +10,7 @@
     "test": "vitest run",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
-    "auth:gen": "bunx auth generate --config=./src/auth/lib/auth.ts",
+    "auth:gen": "NODE_ENV=development bunx auth generate --config=./src/auth/lib/server.ts",
     "db:gen": "prisma generate",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
@@ -34,10 +34,13 @@
     "better-auth": "^1.5.4",
     "dotenv": "^17.3.1",
     "lucide-solid": "^0.544.0",
+    "nanoid": "^5.1.6",
     "nitro": "npm:nitro-nightly@latest",
     "nodemailer": "^8.0.1",
+    "sharp": "^0.34.5",
     "solid-icons": "^1.2.0",
     "solid-js": "^1.9.9",
+    "ua-parser-js": "^2.0.9",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "devDependencies": {

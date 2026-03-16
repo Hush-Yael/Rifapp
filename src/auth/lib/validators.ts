@@ -1,6 +1,11 @@
 import { z } from "zod";
 import { CustomZodErrorMessages } from "~/shared/lib/validation";
-import { maxPass, minPass } from "~/auth/lib/constants";
+import {
+  ACCEPTED_IMAGE_TYPES,
+  MAX_PROFILE_IMG_SIZE,
+  maxPass,
+  minPass,
+} from "~/auth/lib/constants";
 import { createServerFn } from "@tanstack/solid-start";
 import auth from "~/auth/lib/server";
 import { getRequest } from "@tanstack/solid-start/server";
@@ -43,6 +48,20 @@ export const nameValidator = z
   .min(2, CustomZodErrorMessages.minLength(2))
   .max(100, CustomZodErrorMessages.maxLength(100))
   .regex(/^[a-zA-Z\u00C0-\u017F\s]+$/, "Solo se aceptan letras y espacios");
+
+export const profilePictureValidator = z.union([
+  z.null().optional(),
+  z
+    .instanceof(File, { message: "El archivo debe ser una imagen" })
+    .refine(
+      (file) => file.size <= MAX_PROFILE_IMG_SIZE,
+      "El archivo debe pesar menos de 5MB",
+    )
+    .refine(
+      (file) => ACCEPTED_IMAGE_TYPES.includes(file.type),
+      "Solo se aceptan imágenes JPG, PNG o WebP",
+    ),
+]);
 
 /**
  * Verifies user data: if is signup checks if email is not taken, else if is login checks if credentials are correct

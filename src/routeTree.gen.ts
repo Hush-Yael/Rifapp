@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthedRouteRouteImport } from './routes/_authed/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthedDashboardRouteImport } from './routes/_authed/dashboard'
+import { Route as AuthedAccountRouteImport } from './routes/_authed/account'
 import { Route as authRedirToDashboardRouteRouteImport } from './routes/(auth)/_redir-to-dashboard/route'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 import { Route as authRedirToDashboardSignupRouteImport } from './routes/(auth)/_redir-to-dashboard/signup'
@@ -33,6 +34,11 @@ const IndexRoute = IndexRouteImport.update({
 const AuthedDashboardRoute = AuthedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => AuthedRouteRoute,
+} as any)
+const AuthedAccountRoute = AuthedAccountRouteImport.update({
+  id: '/account',
+  path: '/account',
   getParentRoute: () => AuthedRouteRoute,
 } as any)
 const authRedirToDashboardRouteRoute =
@@ -84,6 +90,7 @@ const authRedirToDashboardResetPasswordTokenRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/account': typeof AuthedAccountRoute
   '/dashboard': typeof AuthedDashboardRoute
   '/expired-reset-token': typeof authRedirToDashboardExpiredResetTokenRoute
   '/forgot-password': typeof authRedirToDashboardForgotPasswordRoute
@@ -95,6 +102,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/account': typeof AuthedAccountRoute
   '/dashboard': typeof AuthedDashboardRoute
   '/expired-reset-token': typeof authRedirToDashboardExpiredResetTokenRoute
   '/forgot-password': typeof authRedirToDashboardForgotPasswordRoute
@@ -109,6 +117,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authed': typeof AuthedRouteRouteWithChildren
   '/(auth)/_redir-to-dashboard': typeof authRedirToDashboardRouteRouteWithChildren
+  '/_authed/account': typeof AuthedAccountRoute
   '/_authed/dashboard': typeof AuthedDashboardRoute
   '/(auth)/_redir-to-dashboard/expired-reset-token': typeof authRedirToDashboardExpiredResetTokenRoute
   '/(auth)/_redir-to-dashboard/forgot-password': typeof authRedirToDashboardForgotPasswordRoute
@@ -122,6 +131,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/account'
     | '/dashboard'
     | '/expired-reset-token'
     | '/forgot-password'
@@ -133,6 +143,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/account'
     | '/dashboard'
     | '/expired-reset-token'
     | '/forgot-password'
@@ -146,6 +157,7 @@ export interface FileRouteTypes {
     | '/'
     | '/_authed'
     | '/(auth)/_redir-to-dashboard'
+    | '/_authed/account'
     | '/_authed/dashboard'
     | '/(auth)/_redir-to-dashboard/expired-reset-token'
     | '/(auth)/_redir-to-dashboard/forgot-password'
@@ -184,6 +196,13 @@ declare module '@tanstack/solid-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof AuthedDashboardRouteImport
+      parentRoute: typeof AuthedRouteRoute
+    }
+    '/_authed/account': {
+      id: '/_authed/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AuthedAccountRouteImport
       parentRoute: typeof AuthedRouteRoute
     }
     '/(auth)/_redir-to-dashboard': {
@@ -246,10 +265,12 @@ declare module '@tanstack/solid-router' {
 }
 
 interface AuthedRouteRouteChildren {
+  AuthedAccountRoute: typeof AuthedAccountRoute
   AuthedDashboardRoute: typeof AuthedDashboardRoute
 }
 
 const AuthedRouteRouteChildren: AuthedRouteRouteChildren = {
+  AuthedAccountRoute: AuthedAccountRoute,
   AuthedDashboardRoute: AuthedDashboardRoute,
 }
 

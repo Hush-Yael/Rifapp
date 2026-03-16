@@ -7,6 +7,8 @@ import {
 import { BiRegularBrightnessHalf, BiSolidBrightnessHalf } from "solid-icons/bi";
 import type { Theme } from "../lib/theme";
 import type { IconTypes } from "solid-icons";
+import { FiUpload } from "solid-icons/fi";
+import { FaSolidTrashAlt } from "solid-icons/fa";
 
 const Icons = {
   theme: {
@@ -23,6 +25,8 @@ const Icons = {
       outline: BiRegularBrightnessHalf,
     },
   } satisfies Record<Theme, { fill: IconTypes; outline: IconTypes }>,
+  upload: FiUpload,
+  trash: FaSolidTrashAlt,
 } as const;
 
 export default Icons;
