@@ -17,6 +17,7 @@ interface PasswordFieldProps extends ParentProps {
   id?: string;
   required?: boolean;
   class?: string;
+  labelContainerClass?: string;
   labelClass?: string;
   inputClass?: string;
   inputContainerClass?: string;
@@ -48,7 +49,7 @@ export default function PasswordField(props: PasswordFieldProps) {
       id={props.id || f().name}
       validationState={f().state.meta.errors.length > 0 ? "invalid" : "valid"}
     >
-      <div class="flex jb aic gap-x-4">
+      <div class={`flex jb aic gap-x-4 ${props.labelContainerClass || ""}`}>
         <TextFieldLabel {...props.labelProps} class={props.labelClass}>
           {props.label}
         </TextFieldLabel>
