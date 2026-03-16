@@ -9,7 +9,10 @@ export const CustomZodErrorMessages = {
 
   requiredValue: "Este campo es requerido",
 
-  minLength: (amount: number) => `Se requieren al menos ${amount} caracteres`,
+  minLength: (amount: number) =>
+    amount < 1
+      ? "Este campo es requerido"
+      : `Se requieren al menos ${amount} caracteres`,
 
   maxLength: (amount: number) => `Se acepta un máximo de ${amount} caracteres`,
 

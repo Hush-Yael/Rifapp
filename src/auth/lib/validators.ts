@@ -37,14 +37,12 @@ export const usernameOrEmailValidator = z
 export const passwordValidator = z
   .string({ errorMap: CustomZodErrorMessages.invalidValue })
   .trim()
-  .nonempty({ message: CustomZodErrorMessages.requiredValue })
   .min(minPass, CustomZodErrorMessages.minLength(minPass))
   .max(maxPass, CustomZodErrorMessages.maxLength(maxPass));
 
 export const nameValidator = z
   .string({ errorMap: CustomZodErrorMessages.invalidValue })
   .trim()
-  .nonempty({ message: CustomZodErrorMessages.requiredValue })
   .min(2, CustomZodErrorMessages.minLength(2))
   .max(100, CustomZodErrorMessages.maxLength(100))
   .regex(/^[a-zA-Z\u00C0-\u017F\s]+$/, "Solo se aceptan letras y espacios");
