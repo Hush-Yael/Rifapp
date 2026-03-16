@@ -1,41 +1,19 @@
 import { useFieldContext } from "~/shared/hooks/forms";
-import { createSignal, type JSX, type ParentProps } from "solid-js";
-import {
-  TextField as Field,
-  type TextFieldRootProps,
-  type TextFieldInputProps,
-} from "@kobalte/core/text-field";
+import { createSignal, type ParentProps } from "solid-js";
+import { TextField as Field } from "@kobalte/core/text-field";
 import {
   TextFieldErrorMessage,
   TextFieldInput,
   TextFieldLabel,
+  type TextFieldProps,
 } from "./TextField";
 import { Link } from "@tanstack/solid-router";
 import { AiTwotoneEye, AiTwotoneEyeInvisible } from "solid-icons/ai";
 
-interface PasswordFieldProps extends ParentProps {
-  id?: string;
-  required?: boolean;
-  class?: string;
+interface PasswordFieldProps extends TextFieldProps, ParentProps {
   labelContainerClass?: string;
-  labelClass?: string;
-  inputClass?: string;
   inputContainerClass?: string;
-  errorClass?: string;
-  label: JSX.Element;
   resetPasswordLink?: boolean;
-  rootProps?: Omit<TextFieldRootProps, "validationState" | "id" | "required">;
-  labelProps?: Omit<
-    JSX.IntrinsicElements["label"],
-    "class" | "children" | "for"
-  >;
-  inputProps?: TextFieldInputProps &
-    Omit<
-      JSX.IntrinsicElements["input"],
-      "class" | "type" | "value" | "onChange"
-    >;
-  errorProps?: Omit<JSX.IntrinsicElements["div"], "children" | "class">;
-  errors?: () => { message: string }[];
 }
 
 export default function PasswordField(props: PasswordFieldProps) {
@@ -89,12 +67,7 @@ export default function PasswordField(props: PasswordFieldProps) {
         </button>
       </div>
 
-      <TextFieldErrorMessage
-        {...props.errorProps}
-        class={props.errorClass}
-        fieldApi={f}
-        errors={props.errors}
-      />
+      <TextFieldErrorMessage {...props.errorProps} class={props.errorClass} />
     </Field>
   );
 }

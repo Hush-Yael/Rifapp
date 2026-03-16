@@ -1,4 +1,5 @@
 import { type AuthError, getErrorMessage } from "~/auth/lib/client";
+import type { useRouter } from "@tanstack/solid-router";
 
 type AuthFnResolvedError = { error: AuthError };
 
@@ -16,3 +17,23 @@ export const useAuthFnPromise = <T>(fnPromise: Promise<T>) =>
       })
       .catch(rej),
   );
+
+/** Used to invalidate router when toast is shown */
+export const refreshAfterToast = (
+  router: ReturnType<typeof useRouter>,
+  message: string,
+) => {
+  queueMicrotask(() => {
+    router.invalidate();
+  });
+
+  return message;
+};
+
+export const useToastErrorMsg = (
+  error: Error | { message: string },
+  defaultMsg: string,
+) => {
+  console.error(error);
+  return error instanceof Error ? defaultMsg : error?.message || defaultMsg;
+};

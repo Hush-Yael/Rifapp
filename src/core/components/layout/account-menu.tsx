@@ -7,6 +7,7 @@ import { Show, useContext } from "solid-js";
 import { DropdownMenu } from "@kobalte/core/dropdown-menu";
 import { FaRegularUserCircle, FaSolidCircleUser } from "solid-icons/fa";
 import sideBarContext from "~/core/context/sidebar/context";
+import { refreshAfterToast, useToastErrorMsg } from "~/core/lib/util";
 
 export default function AccountMenu() {
   const router = useRouter();
@@ -77,14 +78,10 @@ export default function AccountMenu() {
             class="ui-menu-item ui-menu-item/danger p-1 px-2"
             onClick={() =>
               toast.promise(authClient.signOut(), {
-                onLoading: "Cerrando sesión",
-                onSuccess: () => {
-                  queueMicrotask(() => {
-                    router.invalidate();
-                  });
-                  return "Sesión cerrada";
-                },
-                onError: "No se pudo cerrar la sesión",
+                onLoading: "Cerrando sesión...",
+                onSuccess: () => refreshAfterToast(router, "Sesión cerrada"),
+                onError: (error) =>
+                  useToastErrorMsg(error, "No se pudo cerrar la sesión"),
               })
             }
           >

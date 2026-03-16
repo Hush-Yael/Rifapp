@@ -5,6 +5,7 @@ import TextField from "~/shared/components/widgets/forms/TextField";
 import FormComponent from "~/shared/components/widgets/forms/index";
 import SubmitButton from "~/shared/components/widgets/forms/SubmitBtn";
 import ResetButton from "../components/widgets/forms/ResetBtn";
+import ErrorMap from "../components/widgets/forms/ErrorMap";
 
 export const { fieldContext, useFieldContext, formContext, useFormContext } =
   createFormHookContexts();
@@ -18,6 +19,7 @@ export const { useAppForm, withForm, withFieldGroup } = createFormHook({
     FormComponent,
     SubmitButton,
     ResetButton,
+    ErrorMap,
   },
   fieldContext,
   formContext,

@@ -1,12 +1,13 @@
 import { useFieldContext } from "~/shared/hooks/forms";
-import { createMemo, type JSX, type ParentProps } from "solid-js";
+import type { JSX, ParentProps } from "solid-js";
 import {
   TextField as Field,
   type TextFieldRootProps,
   type TextFieldInputProps,
 } from "@kobalte/core/text-field";
+import ErrorMap from "./ErrorMap";
 
-interface TextFieldProps extends ParentProps {
+export interface TextFieldProps extends ParentProps {
   id?: string;
   required?: boolean;
   class?: string;
@@ -25,8 +26,7 @@ interface TextFieldProps extends ParentProps {
       JSX.IntrinsicElements["input"],
       "class" | "type" | "value" | "onChange"
     >;
-  errorProps?: Omit<JSX.IntrinsicElements["div"], "children" | "class">;
-  errors?: () => { message: string }[];
+  errorProps?: Omit<JSX.IntrinsicElements["ul"], "children" | "class">;
 }
 
 export default function TextField(props: TextFieldProps) {
@@ -50,12 +50,7 @@ export default function TextField(props: TextFieldProps) {
         type={props.type || "text"}
       />
 
-      <TextFieldErrorMessage
-        {...props.errorProps}
-        class={props.errorClass}
-        fieldApi={f}
-        errors={props.errors}
-      />
+      <TextFieldErrorMessage {...props.errorProps} class={props.errorClass} />
     </Field>
   );
 }
@@ -82,23 +77,10 @@ export const TextFieldLabel = (props: LabelProps) => (
   <Field.Label {...props}>{props.children}</Field.Label>
 );
 
-type ErrorMessageProps<T> = JSX.IntrinsicElements["div"] & {
-  fieldApi: ReturnType<typeof useFieldContext<T>>;
-  errors?: () => { message: string }[];
-};
+type ErrorMessageProps = JSX.IntrinsicElements["ul"];
 
-export const TextFieldErrorMessage = <T,>(props: ErrorMessageProps<T>) => {
-  const errors =
-    props.errors || createMemo(() => props.fieldApi().state.meta.errors);
-
-  return (
-    <Field.ErrorMessage
-      {...props}
-      // @ts-expect-error: strip props
-      errors={null}
-      fieldApi={null}
-    >
-      {typeof errors()[0] === "string" ? errors()[0] : errors()[0]!.message}
-    </Field.ErrorMessage>
-  );
-};
+export const TextFieldErrorMessage = (props: ErrorMessageProps) => (
+  <Field.ErrorMessage {...props} as="ul">
+    <ErrorMap />
+  </Field.ErrorMessage>
+);
