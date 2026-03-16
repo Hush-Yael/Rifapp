@@ -4,6 +4,7 @@ import PasswordField from "~/shared/components/widgets/forms/PasswordField";
 import TextField from "~/shared/components/widgets/forms/TextField";
 import FormComponent from "~/shared/components/widgets/forms/index";
 import SubmitButton from "~/shared/components/widgets/forms/SubmitBtn";
+import ResetButton from "../components/widgets/forms/ResetBtn";
 
 export const { fieldContext, useFieldContext, formContext, useFormContext } =
   createFormHookContexts();
@@ -16,6 +17,7 @@ export const { useAppForm, withForm, withFieldGroup } = createFormHook({
   formComponents: {
     FormComponent,
     SubmitButton,
+    ResetButton,
   },
   fieldContext,
   formContext,
