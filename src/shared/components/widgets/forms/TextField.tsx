@@ -26,7 +26,7 @@ export interface TextFieldProps extends ParentProps {
       JSX.IntrinsicElements["input"],
       "class" | "type" | "value" | "onChange"
     >;
-  errorProps?: Omit<JSX.IntrinsicElements["ul"], "children" | "class">;
+  errorProps?: Omit<JSX.IntrinsicElements["div"], "children" | "class">;
 }
 
 export default function TextField(props: TextFieldProps) {
@@ -77,10 +77,10 @@ export const TextFieldLabel = (props: LabelProps) => (
   <Field.Label {...props}>{props.children}</Field.Label>
 );
 
-type ErrorMessageProps = JSX.IntrinsicElements["ul"];
+type ErrorMessageProps = JSX.IntrinsicElements["div"];
 
 export const TextFieldErrorMessage = (props: ErrorMessageProps) => (
-  <Field.ErrorMessage {...props} as="ul">
+  <Field.ErrorMessage {...props}>
     <ErrorMap />
   </Field.ErrorMessage>
 );
