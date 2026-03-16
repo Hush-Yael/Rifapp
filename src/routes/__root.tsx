@@ -13,6 +13,7 @@ import { ThemeProvider } from "~/core/context/theme/provider";
 import { useHydrated } from "@tanstack/solid-router";
 import LinearLoader from "~/shared/components/widgets/loaders/linear";
 import { Toast } from "@kobalte/core/toast";
+import { QueryClient, QueryClientProvider } from "@tanstack/solid-query";
 
 if (import.meta.env.DEV && !("sleep" in Promise))
   Object.defineProperty(Promise, "sleep", {
@@ -26,7 +27,9 @@ declare global {
   }
 }
 
-export const Route = createRootRouteWithContext()({
+export const Route = createRootRouteWithContext<{
+  queryClient: QueryClient;
+}>()({
   head: () => ({
     meta: [
       { title: import.meta.env.VITE_APP_NAME },
@@ -66,6 +69,7 @@ export const Route = createRootRouteWithContext()({
 
 function RootComponent() {
   const isHydrated = useHydrated();
+  const queryClient = new QueryClient();
 
   return (
     <html lang="es">
@@ -81,7 +85,9 @@ function RootComponent() {
 
         <ThemeProvider>
           <Suspense>
-            <Outlet />
+            <QueryClientProvider client={queryClient}>
+              <Outlet />
+            </QueryClientProvider>
           </Suspense>
 
           <Portal>
