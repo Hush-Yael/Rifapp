@@ -18,8 +18,11 @@ const btn = {
   ["ui-btn/primary"]:
     "squircle rounded-[16px] font-600 tracking-wide bg-primary pover:bg-primary/80 border-1 border-[#0002] text-primary-text shadow-[--filled-shadow] outline-accent disabled:active:(animate-head-shake animate-iteration-6) focus-visible:(scale-101 -translate-y-0.5)",
 
-  ["ui-btn/secondary"]:
-    "squircle rounded-[16px] font-600 tracking-wide bg-secondary pover:bg-secondary/80 text-secondary-text",
+  ["ui-btn/muted"]:
+    "bg-muted border border-[--shaded-2] text-muted-text rounded-[16px] squircle pover:bg-muted/50 shadow-[inset_0_2px_#fffa,0_1px_0_rgba(27,31,35,0.04)] dark:shadow-[inset_0_2px_2px_#0002,0_2px_2px_#0002,0_4px_4px_#0001]",
+
+  ["ui-btn/danger"]:
+    "bg-danger text-danger-text rounded-[16px] squircle border border-[--shaded] font-600 shadow-[--filled-shadow] pover:bg-danger/80 disabled:active:(animate-head-shake animate-iteration-6)",
 };
 
 const input = {
