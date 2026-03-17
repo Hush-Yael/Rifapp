@@ -8,7 +8,7 @@ export type TabValue = "change-password" | "data" | "sessions";
 
 export default function Account() {
   const c = `
-    relative  select-none transition-colors
+    relative select-none transition-colors
     not-[[data-selected]]:(text-muted-text pover:bg-[--shaded])
     data-[selected]:(font-500 bg-primary/20 dark:bg-[--shaded])
     max-sidebar_full:(p-1.5 px-4)
@@ -43,5 +43,35 @@ export default function Account() {
       <ChangePasswordTab />
       <SessionsTab />
     </Tabs>
+  );
+}
+
+export function AccountLoader() {
+  return (
+    <div role="status" aria-label="Cargando contenido...">
+      <div class="flex flex-col gap-6 flex-1 sidebar_full:(flex-row -ml-2)">
+        {/* tabs */}
+        <div class="flex gap-1 border-[--shaded] max-sidebar_full:border-b sidebar_full:(flex-col border-r min-w-[200px]) *:h-25px *:w-100px *:bg-[--shaded-2] *:animate-pulse sidebar_full:*:w-full">
+          <div />
+          <div />
+          <div />
+        </div>
+
+        <div class="col gap-y-6 sidebar:(max-w-900px w-full mxa)">
+          {/* title */}
+          <div class="col gap-1 border-b border-[--shaded] pb-2 *:h-40px *:rounded *:bg-[--shaded-2] *:animate-pulse *:rounded">
+            <div />
+            <div />
+          </div>
+
+          {/* tab content */}
+          <div class="flex-1 col gap-6 *:bg-[--shaded-2] *:animate-pulse *:h-150px *:rounded">
+            <div />
+            <div />
+            <div />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
