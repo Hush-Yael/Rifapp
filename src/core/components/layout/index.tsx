@@ -23,7 +23,7 @@ export default function Layout() {
 
         <main
           class={`
-            p-4 flex-1 bg-[--base] col-start-2 transition-[margin] squircle duration-250
+            relative col p-4 flex-1 bg-[--base] col-start-2 transition-[margin] squircle duration-250
             max-sidebar:(border-t border-[--shaded] rounded-t-3xl shadow-[0_-2px_4px_rgba(0,0,0,0.0125)])
             sidebar:(
               ml-[calc(var(--nav-w)+var(--spacing)*5)] px-6 rounded-2xl shadow

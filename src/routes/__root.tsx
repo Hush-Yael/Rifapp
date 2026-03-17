@@ -65,6 +65,7 @@ export const Route = createRootRouteWithContext<{
       : undefined,
   }),
   shellComponent: RootComponent,
+  loader: () => void 0,
 });
 
 function RootComponent() {
