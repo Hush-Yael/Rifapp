@@ -142,6 +142,30 @@ const elems = {
   `,
 };
 
+const tabs = {
+  ["ui-tab-list"]: "relative flex border-[--shaded]",
+
+  ["ui-tab-list/horizontal"]: "border-b",
+
+  ["ui-tab-list/vertical"]: "flex-col",
+
+  ["ui-tab-btn"]: `
+    relative select-none transition-colors
+    not-[[data-selected]]:(text-muted-text pover:bg-[--shaded])
+    data-[selected]:(font-500 bg-primary/20 dark:bg-[--shaded])
+  `,
+
+  ["ui-tab-btn/horizontal"]: "p-1.5 px-4",
+
+  ["ui-tab-btn/vertical"]: "text-left p-2 pl-3 pr-5",
+
+  ["ui-tab-indicator"]: "absolute bg-primary transition-transform",
+
+  ["ui-tab-indicator/horizontal"]: "bottom-[-1px] h-[2px]",
+
+  ["ui-tab-indicator/vertical"]: "-left-[1px] w-[2px]",
+};
+
 const toast = {
   ["ui-toast"]: `
     flex gap-x-3 rounded-lg p-2 bg-card shadow-[--card-shadow]
@@ -202,6 +226,7 @@ const shortcuts = {
   ...elems,
   ...input,
   ...toast,
+  ...tabs,
 } satisfies UserShortcuts<ConfigThemePreset>;
 
 export default shortcuts;

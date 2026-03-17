@@ -7,14 +7,6 @@ import useMedia from "~/shared/hooks/useMedia";
 export type TabValue = "change-password" | "data" | "sessions";
 
 export default function Account() {
-  const c = `
-    relative select-none transition-colors
-    not-[[data-selected]]:(text-muted-text pover:bg-[--shaded])
-    data-[selected]:(font-500 bg-primary/20 dark:bg-[--shaded])
-    max-sidebar_full:(p-1.5 px-4)
-    sidebar_full:(text-left p-2 pl-3 pr-5)
-  `;
-
   const mediaMatches = useMedia("(min-width: 1000px)");
 
   return (
@@ -24,19 +16,29 @@ export default function Account() {
       activationMode="manual"
       orientation={mediaMatches() ? "vertical" : "horizontal"}
     >
-      <Tabs.List class="relative flex border-[--shaded] max-[500px]:text-sm max-sidebar_full:border-b sidebar_full:(flex-col border-r)">
-        <Tabs.Trigger class={c} value={"data" satisfies TabValue}>
+      <Tabs.List class="ui-tab-list max-[500px]:text-sm max-sidebar_full:ui-tab-list/horizontal sidebar_full:(ui-tab-list/vertical border-r)">
+        <Tabs.Trigger
+          class="ui-tab-btn max-sidebar_full:ui-tab-btn/horizontal sidebar_full:ui-tab-btn/vertical"
+          value={"data" satisfies TabValue}
+        >
           Datos
         </Tabs.Trigger>
 
-        <Tabs.Trigger class={c} value={"change-password" satisfies TabValue}>
+        <Tabs.Trigger
+          class="ui-tab-btn max-sidebar_full:ui-tab-btn/horizontal sidebar_full:ui-tab-btn/vertical"
+          value={"change-password" satisfies TabValue}
+        >
           Cambiar contraseña
         </Tabs.Trigger>
 
-        <Tabs.Trigger class={c} value={"sessions" satisfies TabValue}>
+        <Tabs.Trigger
+          class="ui-tab-btn max-sidebar_full:ui-tab-btn/horizontal sidebar_full:ui-tab-btn/vertical"
+          value={"sessions" satisfies TabValue}
+        >
           Sesiones
         </Tabs.Trigger>
-        <Tabs.Indicator class="absolute bg-primary transition-transform max-sidebar_full:(bottom-[-1px] h-[2px]) sidebar_full:(-left-[1px] w-[2px])" />
+
+        <Tabs.Indicator class="ui-tab-indicator max-sidebar_full:ui-tab-indicator/horizontal sidebar_full:ui-tab-indicator/vertical" />
       </Tabs.List>
 
       <DataTab />
