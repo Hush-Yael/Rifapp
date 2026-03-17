@@ -12,51 +12,87 @@ import type { IconTypes } from "solid-icons";
 import { Link } from "@tanstack/solid-router";
 import { HoverCard } from "@kobalte/core/hover-card";
 import sideBarContext from "~/core/context/sidebar/context";
+import { Collapsible } from "@kobalte/core/collapsible";
 
 export default function Navbar() {
-  const { sidebarOpen, sidebarFixed } = useContext(sideBarContext)!;
+  const { sidebarOpen, setSidebarOpen, sidebarFixed } =
+    useContext(sideBarContext)!;
 
   return (
-    <nav
-      id="sidebar"
-      class="z-5 top-0 left-0 flex-1 text-sidebar-text transition-[opacity,transform] duration-250 max-sidebar:(fixed size-full max-w-70dvw p-2.5 bg-[--base] aria-hidden:(pointer-events-none opacity-0 -translate-x-full)) sidebar:(w-full py-6)"
-      aria-hidden={!sidebarOpen() && !sidebarFixed()}
-      inert={!sidebarOpen() && !sidebarFixed()}
+    <Collapsible
+      open={sidebarOpen() || sidebarFixed()}
+      onOpenChange={setSidebarOpen}
     >
-      <ul class="col gap-y-1 sidebar:gap-y-2">
-        <NavbarLink
-          to="/dashboard"
-          outlineIcon={MdOutlineDashboard}
-          filledIcon={MdSharpDashboard}
-        >
-          Panel de control
-        </NavbarLink>
+      <Collapsible.Trigger
+        id="toggleNavbarBtn"
+        class={`
+          group col gap-y-1.5 aic jcc h-6 w-12
+          sidebar:hidden
+          [&>span]:(h-[2px] w-1/2 bg-current transition-[transform,opacity] duration-250)
+        `}
+        aria-label="Abrir menú de navegación"
+      >
+        <span class="group-aria-expanded:(rotate-45 translate-y-2)" />
+        <span class="group-aria-expanded:opacity-0" />
+        <span class="group-aria-expanded:(-rotate-45 -translate-y-2)" />
+      </Collapsible.Trigger>
 
-        <NavbarLink
-          to="/raffles"
-          outlineIcon={BsTicketDetailed}
-          filledIcon={BsTicketDetailedFill}
+      <Collapsible.Content
+        as="nav"
+        id="sidebar"
+        class={`
+          z-5 top-0 left-0 flex-1 text-sidebar-text duration-250
+          max-sidebar:(
+            fixed top-[--header-h] w-full p-2.5 bg-sidebar shadow-[0_2px_4px_#0002] border-t border-[--shaded] shadow-[0_4px_8px_#0001] overflow-hidden
+            dark:(border-b border-[--shaded-2] shadow-[0_4px_18px_#000a])
+            data-[closed]:(animate-[navbar-hide_100ms_ease-in] pointer-events-none)
+            data-[expanded]:animate-[navbar-show_100ms_ease-in]
+          )
+          sidebar:(w-full py-6)
+        `}
+      >
+        <ul
+          class="col gap-y-1 sidebar:gap-y-2"
+          onClick={({ target }) =>
+            target.closest("a") &&
+            // await closing animation
+            setTimeout(() => setSidebarOpen(false), 150)
+          }
         >
-          Rifas
-        </NavbarLink>
+          <NavbarLink
+            to="/dashboard"
+            outlineIcon={MdOutlineDashboard}
+            filledIcon={MdSharpDashboard}
+          >
+            Panel de control
+          </NavbarLink>
 
-        <NavbarLink
-          to="/users"
-          outlineIcon={RiUserFacesGroupLine}
-          filledIcon={RiUserFacesGroupFill}
-        >
-          Usuarios
-        </NavbarLink>
+          <NavbarLink
+            to="/raffles"
+            outlineIcon={BsTicketDetailed}
+            filledIcon={BsTicketDetailedFill}
+          >
+            Rifas
+          </NavbarLink>
 
-        <NavbarLink
-          to="/payments"
-          outlineIcon={MdOutlinePayments}
-          filledIcon={MdFillPayments}
-        >
-          Pagos
-        </NavbarLink>
-      </ul>
-    </nav>
+          <NavbarLink
+            to="/users"
+            outlineIcon={RiUserFacesGroupLine}
+            filledIcon={RiUserFacesGroupFill}
+          >
+            Usuarios
+          </NavbarLink>
+
+          <NavbarLink
+            to="/payments"
+            outlineIcon={MdOutlinePayments}
+            filledIcon={MdFillPayments}
+          >
+            Pagos
+          </NavbarLink>
+        </ul>
+      </Collapsible.Content>
+    </Collapsible>
   );
 }
 

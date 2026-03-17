@@ -119,3 +119,23 @@
     opacity: 0;
   }
 }
+
+@keyframes navbar-show {
+  from {
+    height: 0;
+  }
+
+  to {
+    height: var(--kb-collapsible-content-height);
+  }
+}
+
+@keyframes navbar-hide {
+  from {
+    height: var(--kb-collapsible-content-height);
+  }
+
+  to {
+    height: 0;
+  }
+}

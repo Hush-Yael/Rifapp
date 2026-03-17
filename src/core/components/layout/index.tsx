@@ -40,48 +40,40 @@ export default function Layout() {
 }
 
 function Sidebar() {
-  const { sidebarOpen, setSidebarOpen } = useContext(sideBarContext)!;
+  const { sidebarOpen } = useContext(sideBarContext)!;
 
   return (
-    <aside
-      class={`
-        flex gap-x-4 h-[--header-h] transition-[width] duration-250
-        max-sidebar:(z-1 jb pl-3 pr-2)
-        sidebar:(fixed left-3 top-3 mb-3 flex-col h-[calc(100%-var(--spacing)*3)] w-[--nav-w] py-2) max-sidebar_full:aic
-        sidebar_full:(py-5 w-[--nav-full-w])
-      `}
-    >
+    <>
       {/* backdrop */}
       <div
-        class="fixed inset-0 z-4 bg-[#0002] dark:bg-[#0004] transition-opacity duration-250 not-[[data-hidden]]:(size-full) data-[hidden]:(pointer-events-none opacity-0) sidebar:hidden"
+        class="fixed inset-0 z-4 bg-[#0002] dark:bg-[#0004] transition-opacity duration-250 backdrop-blur-[1px] not-[[data-hidden]]:(size-full) data-[hidden]:(pointer-events-none opacity-0) sidebar:hidden"
         bool:data-hidden={!sidebarOpen()}
       />
 
-      <Logo class="h-5.5 sidebar:max-sidebar_full:hidden sidebar_full:(h-6 ml-3 mb-6)" />
+      <aside
+        class={`
+          flex gap-x-4 h-[--header-h] transition-[width] duration-250
+          max-sidebar:(z-5 bg-sidebar jb pl-3 pr-2)
+          sidebar:(fixed left-3 top-3 mb-3 flex-col h-[calc(100%-var(--spacing)*3)] w-[--nav-w] py-2) max-sidebar_full:aic
+          sidebar_full:(py-5 w-[--nav-full-w])
+        `}
+      >
+        <Logo class="h-5.5 sidebar:max-sidebar_full:hidden sidebar_full:(h-6 ml-3 mb-6)" />
 
-      <LogoShape class="size-8 mb-6 hidden sidebar:max-sidebar_full:block" />
+        <LogoShape class="size-8 mb-6 hidden sidebar:max-sidebar_full:block" />
 
-      <div class="flex gap-2 sidebar:(flex-col w-full py-2 border-[--shaded-2] dark:border-[--shaded] border-y) max-sidebar_full:aic">
-        <ThemeSelector />
+        <div class="flex gap-2 max-sidebar:aic sidebar:flex-col">
+          <div class="flex gap-2 sidebar:(flex-col w-full py-2 border-[--shaded-2] dark:border-[--shaded] border-y) max-sidebar_full:aic">
+            <ThemeSelector />
 
-        <Notifications />
+            <Notifications />
 
-        <AccountMenu />
+            <AccountMenu />
+          </div>
 
-        <button
-          class={`group col gap-y-1.5 aic jcc h-6 w-12 sidebar:hidden [&>span]:(h-[2px] w-1/2 bg-current transition-[transform,opacity] duration-250) `}
-          onClick={() => setSidebarOpen(!sidebarOpen())}
-          aria-haspopup="menu"
-          aria-label="Abrir menú"
-          aria-expanded={sidebarOpen()}
-        >
-          <span class="group-aria-expanded:(rotate-45 translate-y-2)" />
-          <span class="group-aria-expanded:opacity-0" />
-          <span class="group-aria-expanded:(-rotate-45 -translate-y-2)" />
-        </button>
-      </div>
-
-      <Navbar />
-    </aside>
+          <Navbar />
+        </div>
+      </aside>
+    </>
   );
 }

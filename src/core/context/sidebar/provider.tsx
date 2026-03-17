@@ -10,8 +10,16 @@ function SidebarProvider(props: ParentProps) {
     e.key === "Escape" && setSidebarOpen(false);
 
   const handleClickOutside = (e: MouseEvent) => {
-    const sidebarRef = document.getElementById("sidebar") as HTMLDivElement;
-    if (!sidebarRef.contains(e.target as Node)) setSidebarOpen(false);
+    const $sidebar = document.getElementById("sidebar") as HTMLDivElement,
+      $toggleNavbarBtn = document.getElementById(
+        "toggleNavbarBtn",
+      ) as HTMLButtonElement;
+
+    if (
+      !$toggleNavbarBtn?.contains(e.target as Node) &&
+      !$sidebar?.contains(e.target as Node)
+    )
+      setSidebarOpen(false);
   };
 
   const cleanup = () => {
